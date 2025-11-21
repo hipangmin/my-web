@@ -1,107 +1,214 @@
-HTTrack3.49-2+htsswf+htsjava launched on Tue, 18 Nov 2025 17:59:42 at https://macmasterimaritime.com https://macmasterimaritime.com +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
-(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://macmasterimaritime.com https://macmasterimaritime.com -O1 "D:\ypm\my web\test" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
-
-Information, Warnings and Errors reported for this mirror:
-note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
-	such as username/password authentication for websites mirrored in this project
-	do not share these files/folders if you want these information to remain private
-
-18:01:55	Warning: 	Link https://macmasterimaritime.com/cdn-cgi/l/email-protection not scanned (follow robots meta tag)
-18:01:55	Warning: 	Retry after error -4 (Connect Error) at link https://www.google.com/recaptcha/api.js?render=6LfnhNErAAAAAI48ET6MpMw-xO8AyyAN9FFK9InQ&ver=3.0 (from https://macmasterimaritime.com/)
-18:02:22	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=12160
-18:02:22	Warning: 	File has moved from https://macmasterimaritime.com/?p=12160 to https://macmasterimaritime.com/services/
-18:02:25	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=49
-18:02:25	Warning: 	File has moved from https://macmasterimaritime.com/?p=49 to https://macmasterimaritime.com/services/ships-registration/
-18:02:46	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=128
-18:02:46	Warning: 	File has moved from https://macmasterimaritime.com/?p=128 to https://macmasterimaritime.com/services/seafarers-certifications/
-18:03:10	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=130
-18:03:10	Warning: 	File has moved from https://macmasterimaritime.com/?p=130 to https://macmasterimaritime.com/services/class-and-statutory/
-18:03:41	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=136
-18:03:41	Warning: 	File has moved from https://macmasterimaritime.com/?p=136 to https://macmasterimaritime.com/services/flag-state-inspections/
-18:03:41	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=263
-18:03:41	Warning: 	File has moved from https://macmasterimaritime.com/?p=263 to https://macmasterimaritime.com/services/marine-surveys/
-18:03:41	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=266
-18:03:41	Warning: 	File has moved from https://macmasterimaritime.com/?p=266 to https://macmasterimaritime.com/services/consultancy/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=12734
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=12734 to https://macmasterimaritime.com/about-us/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=12161
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=12161 to https://macmasterimaritime.com/contact-2/
-18:03:44	Warning: 	Retry after error -4 (Connect Error) at link https://www.google.com/recaptcha/api.js?render=6LfnhNErAAAAAI48ET6MpMw-xO8AyyAN9FFK9InQ&ver=3.0 (from https://macmasterimaritime.com/)
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=12165
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=12165 to https://macmasterimaritime.com/belize-ship-registration/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=2998
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=2998 to https://macmasterimaritime.com/services/new-ship-registration/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=3041
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=3041 to https://macmasterimaritime.com/services/ships-registration/change-of-owner/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=3072
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=3072 to https://macmasterimaritime.com/services/ships-registration/extension-of-registry-certificates/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=3099
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=3099 to https://macmasterimaritime.com/services/ships-registration/deletion-certificate/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=3081
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=3081 to https://macmasterimaritime.com/services/ships-registration/minimum-safe-manning-certificate/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=3084
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=3084 to https://macmasterimaritime.com/services/ships-registration/continuous-synopsis-record/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=3090
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=3090 to https://macmasterimaritime.com/services/ships-registration/bunker-convention-certificate/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=3096
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=3096 to https://macmasterimaritime.com/services/ships-registration/civil-liability-certificate-clc-69/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=3087
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=3087 to https://macmasterimaritime.com/services/ships-registration/deceleration-of-maritime-labour-convention-part-i/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=6457
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=6457 to https://macmasterimaritime.com/services/seafarers-certifications/panama-coc/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=13718
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=13718 to https://macmasterimaritime.com/liberia-coc/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=11978
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=11978 to https://macmasterimaritime.com/services/seafarers-certifications/cook-islnds-coc/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=10726
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=10726 to https://macmasterimaritime.com/services/seafarers-certifications/montserrrat-yachtsmen-coc/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=10747
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=10747 to https://macmasterimaritime.com/services/seafarers-certifications/panama-seaman-books-for-ratings/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=10743
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=10743 to https://macmasterimaritime.com/services/seafarers-certifications/belize-seaman-books-for-ratings/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=10741
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=10741 to https://macmasterimaritime.com/services/seafarers-certifications/palau-seaman-books-for-ratings/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=3359
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=3359 to https://macmasterimaritime.com/services/seafarers-certifications/stcw-courses-2/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=3363
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=3363 to https://macmasterimaritime.com/services/seafarers-certifications/seafarers-endorsements/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=3361
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=3361 to https://macmasterimaritime.com/services/seafarers-certifications/seafarers-education-experience-and-licenses/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=2219
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=2219 to https://macmasterimaritime.com/services/class-and-statutory/class-hull-and-machinery-certification/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=2221
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=2221 to https://macmasterimaritime.com/services/class-and-statutory/cargo-gears-and-lifting-appliances-certification/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=2226
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=2226 to https://macmasterimaritime.com/services/class-and-statutory/solas-1974-certification/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=2230
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=2230 to https://macmasterimaritime.com/services/class-and-statutory/non-solas-ships-certification/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=2232
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=2232 to https://macmasterimaritime.com/services/class-and-statutory/marpol-1978-certification/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=2234
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=2234 to https://macmasterimaritime.com/services/class-and-statutory/ism-certification/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=2223
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=2223 to https://macmasterimaritime.com/services/class-and-statutory/tonnage-certification/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=2225
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=2225 to https://macmasterimaritime.com/services/class-and-statutory/international-load-line-certificate/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=2240
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=2240 to https://macmasterimaritime.com/services/class-and-statutory/international-energy-efficiency-certification/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=2238
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=2238 to https://macmasterimaritime.com/services/class-and-statutory/international-antifouling-systems-certification/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=2858
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=2858 to https://macmasterimaritime.com/services/class-and-statutory/document-of-compliance-with-the-special-requirements-for-ships-carrying-dangerous-goods/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=2246
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=2246 to https://macmasterimaritime.com/services/class-and-statutory/ballast-water-management-certification/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=2244
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=2244 to https://macmasterimaritime.com/services/class-and-statutory/dangerous-goods-certification/
-18:03:44	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=6720
-18:03:44	Warning: 	File has moved from https://macmasterimaritime.com/?p=6720 to https://macmasterimaritime.com/international-certificate-on-inventory-of-hazardous-material/
-18:04:10	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=146
-18:04:10	Warning: 	File has moved from https://macmasterimaritime.com/?p=146 to https://macmasterimaritime.com/services/consultancy/ships-design-and-conversion/
-18:04:10	Error: 	"Connect Error" (-4) after 2 retries at link https://www.google.com/recaptcha/api.js?render=6LfnhNErAAAAAI48ET6MpMw-xO8AyyAN9FFK9InQ&ver=3.0 (from https://macmasterimaritime.com/)
-18:04:10	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=6729
-18:04:10	Warning: 	File has moved from https://macmasterimaritime.com/?p=6729 to https://macmasterimaritime.com/the-international-certificate-on-inventory-of-hazardous-materials/
-18:04:10	Warning: 	Moved Permanently for https://macmasterimaritime.com/?p=6731
-18:04:10	Warning: 	File has moved from https://macmasterimaritime.com/?p=6731 to https://macmasterimaritime.com/inventory-of-hazardous-material/
-
-HTTrack Website Copier/3.49-2 mirror complete in 4 minutes 28 seconds : 536 links scanned, 486 files written (25372858 bytes overall) [14676359 bytes received at 54762 bytes/sec], 14760884 bytes transferred using HTTP compression in 341 files, ratio 24%, 28.1 requests per connection
-(1 errors, 95 warnings, 0 messages)
+HTTrack3.49-2+htsswf+htsjava launched on Tue, 18 Nov 2025 17:59:42 at https://pangminybm.com https://pangminybm.com +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Original from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://pangminybm.com https://pangminybm.com -O1 "D:\ypm\my web\test" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+
+
+Information, Warnings and Errors reported for this mirror:
+
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+
+	such as username/password authentication for websites mirrored in this project
+
+	do not share these files/folders if you want these information to remain private
+
+
+
+18:01:55	Warning: 	Link https://pangminybm.com/cdn-cgi/l/email-protection not scanned (follow robots meta tag)
+
+18:01:55	Warning: 	Retry after error -4 (Connect Error) at link https://www.google.com/recaptcha/api.js?render=6LfnhNErAAAAAI48ET6MpMw-xO8AyyAN9FFK9InQ&ver=3.0 (from https://pangminybm.com/)
+
+18:02:22	Warning: 	Moved Permanently for https://pangminybm.com/?p=12160
+
+18:02:22	Warning: 	File has moved from https://pangminybm.com/?p=12160 to https://pangminybm.com/services/
+
+18:02:25	Warning: 	Moved Permanently for https://pangminybm.com/?p=49
+
+18:02:25	Warning: 	File has moved from https://pangminybm.com/?p=49 to https://pangminybm.com/services/ships-registration/
+
+18:02:46	Warning: 	Moved Permanently for https://pangminybm.com/?p=128
+
+18:02:46	Warning: 	File has moved from https://pangminybm.com/?p=128 to https://pangminybm.com/services/seafarers-certifications/
+
+18:03:10	Warning: 	Moved Permanently for https://pangminybm.com/?p=130
+
+18:03:10	Warning: 	File has moved from https://pangminybm.com/?p=130 to https://pangminybm.com/services/class-and-statutory/
+
+18:03:41	Warning: 	Moved Permanently for https://pangminybm.com/?p=136
+
+18:03:41	Warning: 	File has moved from https://pangminybm.com/?p=136 to https://pangminybm.com/services/flag-state-inspections/
+
+18:03:41	Warning: 	Moved Permanently for https://pangminybm.com/?p=263
+
+18:03:41	Warning: 	File has moved from https://pangminybm.com/?p=263 to https://pangminybm.com/services/marine-surveys/
+
+18:03:41	Warning: 	Moved Permanently for https://pangminybm.com/?p=266
+
+18:03:41	Warning: 	File has moved from https://pangminybm.com/?p=266 to https://pangminybm.com/services/consultancy/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=12734
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=12734 to https://pangminybm.com/about-us/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=12161
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=12161 to https://pangminybm.com/contact-2/
+
+18:03:44	Warning: 	Retry after error -4 (Connect Error) at link https://www.google.com/recaptcha/api.js?render=6LfnhNErAAAAAI48ET6MpMw-xO8AyyAN9FFK9InQ&ver=3.0 (from https://pangminybm.com/)
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=12165
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=12165 to https://pangminybm.com/belize-ship-registration/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=2998
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=2998 to https://pangminybm.com/services/new-ship-registration/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=3041
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=3041 to https://pangminybm.com/services/ships-registration/change-of-owner/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=3072
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=3072 to https://pangminybm.com/services/ships-registration/extension-of-registry-certificates/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=3099
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=3099 to https://pangminybm.com/services/ships-registration/deletion-certificate/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=3081
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=3081 to https://pangminybm.com/services/ships-registration/minimum-safe-manning-certificate/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=3084
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=3084 to https://pangminybm.com/services/ships-registration/continuous-synopsis-record/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=3090
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=3090 to https://pangminybm.com/services/ships-registration/bunker-convention-certificate/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=3096
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=3096 to https://pangminybm.com/services/ships-registration/civil-liability-certificate-clc-69/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=3087
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=3087 to https://pangminybm.com/services/ships-registration/deceleration-of-maritime-labour-convention-part-i/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=6457
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=6457 to https://pangminybm.com/services/seafarers-certifications/panama-coc/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=13718
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=13718 to https://pangminybm.com/liberia-coc/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=11978
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=11978 to https://pangminybm.com/services/seafarers-certifications/cook-islnds-coc/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=10726
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=10726 to https://pangminybm.com/services/seafarers-certifications/montserrrat-yachtsmen-coc/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=10747
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=10747 to https://pangminybm.com/services/seafarers-certifications/panama-seaman-books-for-ratings/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=10743
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=10743 to https://pangminybm.com/services/seafarers-certifications/belize-seaman-books-for-ratings/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=10741
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=10741 to https://pangminybm.com/services/seafarers-certifications/palau-seaman-books-for-ratings/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=3359
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=3359 to https://pangminybm.com/services/seafarers-certifications/stcw-courses-2/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=3363
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=3363 to https://pangminybm.com/services/seafarers-certifications/seafarers-endorsements/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=3361
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=3361 to https://pangminybm.com/services/seafarers-certifications/seafarers-education-experience-and-licenses/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=2219
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=2219 to https://pangminybm.com/services/class-and-statutory/class-hull-and-machinery-certification/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=2221
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=2221 to https://pangminybm.com/services/class-and-statutory/cargo-gears-and-lifting-appliances-certification/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=2226
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=2226 to https://pangminybm.com/services/class-and-statutory/solas-1974-certification/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=2230
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=2230 to https://pangminybm.com/services/class-and-statutory/non-solas-ships-certification/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=2232
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=2232 to https://pangminybm.com/services/class-and-statutory/marpol-1978-certification/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=2234
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=2234 to https://pangminybm.com/services/class-and-statutory/ism-certification/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=2223
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=2223 to https://pangminybm.com/services/class-and-statutory/tonnage-certification/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=2225
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=2225 to https://pangminybm.com/services/class-and-statutory/international-load-line-certificate/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=2240
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=2240 to https://pangminybm.com/services/class-and-statutory/international-energy-efficiency-certification/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=2238
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=2238 to https://pangminybm.com/services/class-and-statutory/international-antifouling-systems-certification/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=2858
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=2858 to https://pangminybm.com/services/class-and-statutory/document-of-compliance-with-the-special-requirements-for-ships-carrying-dangerous-goods/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=2246
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=2246 to https://pangminybm.com/services/class-and-statutory/ballast-water-management-certification/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=2244
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=2244 to https://pangminybm.com/services/class-and-statutory/dangerous-goods-certification/
+
+18:03:44	Warning: 	Moved Permanently for https://pangminybm.com/?p=6720
+
+18:03:44	Warning: 	File has moved from https://pangminybm.com/?p=6720 to https://pangminybm.com/international-certificate-on-inventory-of-hazardous-material/
+
+18:04:10	Warning: 	Moved Permanently for https://pangminybm.com/?p=146
+
+18:04:10	Warning: 	File has moved from https://pangminybm.com/?p=146 to https://pangminybm.com/services/consultancy/ships-design-and-conversion/
+
+18:04:10	Error: 	"Connect Error" (-4) after 2 retries at link https://www.google.com/recaptcha/api.js?render=6LfnhNErAAAAAI48ET6MpMw-xO8AyyAN9FFK9InQ&ver=3.0 (from https://pangminybm.com/)
+
+18:04:10	Warning: 	Moved Permanently for https://pangminybm.com/?p=6729
+
+18:04:10	Warning: 	File has moved from https://pangminybm.com/?p=6729 to https://pangminybm.com/the-international-certificate-on-inventory-of-hazardous-materials/
+
+18:04:10	Warning: 	Moved Permanently for https://pangminybm.com/?p=6731
+
+18:04:10	Warning: 	File has moved from https://pangminybm.com/?p=6731 to https://pangminybm.com/inventory-of-hazardous-material/
+
+
+
+HTTrack Website Copier/3.49-2 mirror complete in 4 minutes 28 seconds : 536 links scanned, 486 files written (25372858 bytes overall) [14676359 bytes received at 54762 bytes/sec], 14760884 bytes transferred using HTTP compression in 341 files, ratio 24%, 28.1 requests per connection
+
+(1 errors, 95 warnings, 0 messages)
+

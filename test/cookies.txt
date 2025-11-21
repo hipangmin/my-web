@@ -1,5 +1,5 @@
 # HTTrack Website Copier Cookie File
 # This file format is compatible with Netscape cookies
-.macmasterimaritime.com	TRUE	/	FALSE	1999999999	__cf_bm	rAy_6MSaTfcHs7jumBuWrwRTHMrFhMonzcW8kWsL8cs-1763460250-1.0.1.1-Im2AU2TxzXOwwrXGmK6K0Ge9.yL5bZ4z24gcFfQrNZvOOuivEQ6ludwjvdjaiSuKTCXIRlYCRC8swQuTtuuGlMOqGKhN1.PBY04f3pXKlz8
-macmasterimaritime.com	TRUE	/	FALSE	1999999999	SameSite	None
+.pangminybm.com	TRUE	/	FALSE	1999999999	__cf_bm	rAy_6MSaTfcHs7jumBuWrwRTHMrFhMonzcW8kWsL8cs-1763460250-1.0.1.1-Im2AU2TxzXOwwrXGmK6K0Ge9.yL5bZ4z24gcFfQrNZvOOuivEQ6ludwjvdjaiSuKTCXIRlYCRC8swQuTtuuGlMOqGKhN1.PBY04f3pXKlz8
+pangminybm.com	TRUE	/	FALSE	1999999999	SameSite	None
 
