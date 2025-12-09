@@ -1,15 +1,113 @@
-<HTML>
+<html>
 <!-- Created by HTTrack Website Copier/3.49-2 [XR&CO'2014] -->
-
 <!-- Original from pangminybm.com/?p=10747 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 18 Nov 2025 10:03:44 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-<HEAD>
-<META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=UTF-8"><META HTTP-EQUIV="Refresh" CONTENT="0; URL=services/seafarers-certifications/panama-seaman-books-for-ratings/index.html"><TITLE>Page has moved</TITLE>
-</HEAD>
-<BODY>
-<A HREF="services/seafarers-certifications/panama-seaman-books-for-ratings/index.html"><h3>Click here...</h3></A>
-</BODY>
+<!-- Added by HTTrack --><meta content="text/html;charset=utf-8" http-equiv="content-type"/>
+<head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type"/><meta content="0; URL=services/seafarers-certifications/panama-seaman-books-for-ratings/index.html" http-equiv="Refresh"/><title>Page has moved</title>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("PwBUTNW0qxrXVi-yT");
+   })();
+</script>
+</head>
+<body>
+<a href="services/seafarers-certifications/panama-seaman-books-for-ratings/index.html"><h3>Click here...</h3></a>
+
+
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+    var forms = document.querySelectorAll('form.elementor-form');
+    forms.forEach(function(form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Stop default Elementor/WordPress submission
+            
+            var submitBtn = form.querySelector('[type="submit"]');
+            var originalBtnText = submitBtn.innerText;
+            submitBtn.innerText = 'Sending...';
+
+            // Collect form data
+            // We map generic field names if possible, but EmailJS also accepts the raw form object
+            // provided the template variables match certain names. 
+            // Better to construct a params object to look for common field IDs
+            
+            // Manual Field Mapping based on Labels because name attributes are broken/duplicated
+            var params = {};
+            
+            // Default fallbacks
+            params['from_name'] = 'Visitor';
+            params['email'] = 'No email provided';
+            params['phone'] = 'No phone provided';
+            params['message'] = '';
+            
+            // Helper to clean label text
+            function cleanLabel(text) {
+                return text ? text.replace(/\s+/g, ' ').trim().toLowerCase() : '';
+            }
+
+            // Iterate through all field groups
+            var groups = form.querySelectorAll('.elementor-field-group');
+            groups.forEach(function(group) {
+                var label = group.querySelector('label');
+                var input = group.querySelector('input, select, textarea');
+                
+                if (label && input) {
+                    var labelText = cleanLabel(label.innerText);
+                    var val = input.value;
+                    
+                    if (labelText.includes('your name')) {
+                        params['from_name'] = val;
+                    } else if (labelText.includes('email')) {
+                        // strict check to avoid 'your name' confusion if possible
+                        if (labelText === 'email' || labelText === 'e-mail') {
+                             params['email'] = val;
+                        }
+                    } else if (labelText.includes('phone')) {
+                        params['phone'] = val;
+                    } else if (labelText.includes('question') || labelText.includes('message')) {
+                        params['message'] += val + '\n';
+                    } else if (labelText.includes('more details') || labelText.includes('subject')) {
+                        params['message'] = 'Subject: ' + val + '\n\n' + params['message'];
+                    }
+                }
+            });
+            
+            // Double check email if missed (fallback for duplicate names)
+            if (params['email'] === 'No email provided') {
+                 // Try to find an input with type="email"
+                 var emailInput = form.querySelector('input[type="email"]');
+                 if(emailInput) params['email'] = emailInput.value;
+            }
+            
+            console.log('Sending EmailJS params:', params);
+
+            // Send via EmailJS
+            emailjs.send('service_6hypcy3', 'template_cq4qnre', params)
+                .then(function() {
+                    alert('Message sent successfully!');
+                    submitBtn.innerText = 'Sent!';
+                    form.reset();
+                    // Hide any error messages that might have appeared
+                    var msg = form.querySelector('.elementor-message');
+                    if(msg) msg.style.display = 'none';
+                }, function(error) {
+                    console.error('EmailJS Error:', error);
+                    alert('Failed to send message: ' + JSON.stringify(error));
+                    submitBtn.innerText = originalBtnText;
+                });
+        });
+    });
+});
+</script>
+<style>
+/* Force hide the error message from Elementor's native handler */
+.elementor-message.elementor-message-danger { display: none !important; }
+</style>
+</body>
 <!-- Created by HTTrack Website Copier/3.49-2 [XR&CO'2014] -->
-
 <!-- Original from pangminybm.com/?p=10747 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 18 Nov 2025 10:03:44 GMT -->
-</HTML>
+</html>
