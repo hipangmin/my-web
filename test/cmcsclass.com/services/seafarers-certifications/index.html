@@ -865,8 +865,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 if (input) {
                     // Try label first, then placeholder
-                    var labelText = label ? cleanLabel(label.innerText) : '';
+                    var originalLabel = label ? label.innerText.trim() : '';
+                    var labelText = cleanLabel(originalLabel);
+                    
                     if (!labelText && input.placeholder) {
+                        originalLabel = input.placeholder;
                         labelText = cleanLabel(input.placeholder);
                     }
                     
@@ -876,15 +879,16 @@ document.addEventListener('DOMContentLoaded', function() {
                          // Simple heuristic for name
                          if(params['from_name'] === 'Visitor') params['from_name'] = val;
                     } 
-                    
-                    if (labelText.includes('email') || labelText === 'e-mail') {
+                    else if (labelText.includes('email') || labelText === 'e-mail') {
                         params['email'] = val;
                     } else if (labelText.includes('phone') || labelText.includes('mobile') || labelText.includes('cell')) {
                         params['phone'] = val;
-                    } else if (labelText.includes('question') || labelText.includes('message') || labelText.includes('comment') || labelText.includes('detail')) {
-                        params['message'] += val + '\n';
-                    } else if (labelText.includes('subject')) {
-                        params['message'] = 'Subject: ' + val + '\n\n' + params['message'];
+                    } else {
+                        // For ALL other fields (Rank, Nationality, etc.) or explicit message fields
+                        // Append them to the message body
+                        if (originalLabel && val) {
+                            params['message'] += originalLabel + ': ' + val + '\n';
+                        }
                     }
                 }
             });
