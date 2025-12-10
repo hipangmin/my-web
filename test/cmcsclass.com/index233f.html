@@ -1,11 +1,9 @@
 <html>
 <!-- Created by HTTrack Website Copier/3.49-2 [XR&CO'2014] -->
-<!-- Original from pangminybm.com/?p=2998 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 18 Nov 2025 10:03:44 GMT -->
+<!-- Original from cmcsclass.org/?p=2998 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 18 Nov 2025 10:03:44 GMT -->
 <!-- Added by HTTrack --><meta content="text/html;charset=utf-8" http-equiv="content-type"/>
 <head>
 <meta content="text/html;charset=utf-8" http-equiv="Content-Type"/><meta content="0; URL=services/new-ship-registration/index.html" http-equiv="Refresh"/><title>Page has moved</title>
-
-
 
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -13,11 +11,327 @@
       emailjs.init("PwBUTNW0qxrXVi-yT");
    })();
 </script>
+
+<style id="unified-glass-theme">
+/* ===========================================
+   UNIFIED GLASS THEME - FINAL FIX
+   =========================================== */
+
+/* 1. BODY BACKGROUND */
+body {
+    background: linear-gradient(180deg, #F0F9FF 0%, #BAE6FD 100%) !important;
+    background-attachment: fixed !important;
+    min-height: 100vh;
+}
+
+/* 2. GLOBAL RESET */
+.elementor-section, .e-con, .elementor-column, .elementor-widget-wrap {
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+}
+.elementor-shape, .elementor-divider { display: none !important; }
+
+/* 3. DEFAULT GLASSY CARDS (APPLIED FIRST) */
+/* Applies to all Image Boxes and Text Editors by default */
+.elementor-widget-image-box .elementor-image-box-wrapper,
+.elementor-widget-text-editor .elementor-widget-container,
+.elementor-widget-icon-box .elementor-widget-container,
+.elementor-widget-form .elementor-widget-container, 
+.wpcf7-form {
+    background: rgba(255, 255, 255, 0.25) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 20px;
+    padding: 24px !important;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1) !important;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effects for interactive cards */
+.elementor-widget-image-box:hover .elementor-image-box-wrapper,
+.elementor-widget-icon-box:hover .elementor-widget-container {
+    background: rgba(255, 255, 255, 0.35) !important;
+    transform: translateY(-5px);
+}
+
+/* 4. SPECIFIC OVERRIDES (APPLIED LAST = HIGHER PRIORITY) */
+
+/* === HEADER & FOOTER CLEANUP === */
+header, footer, .elementor-location-header, .elementor-location-footer {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* === LOGO TRANSPARENCY (CRITICAL) === */
+/* Target every possible container of the logo in Header and Footer */
+header .elementor-widget-image-box .elementor-image-box-wrapper,
+footer .elementor-widget-image-box .elementor-image-box-wrapper,
+.elementor-location-header .elementor-widget-image-box .elementor-image-box-wrapper,
+.elementor-location-footer .elementor-widget-image-box .elementor-image-box-wrapper,
+.elementor-widget-theme-site-logo .elementor-widget-container,
+header .elementor-logo,
+footer .elementor-logo,
+.elementor-logo a {
+    background: transparent !important;
+    background-color: transparent !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    transform: none !important; /* No hover lift for logo */
+}
+
+/* === HEADING WIDGETS === */
+/* Headings should usually be transparent */
+.elementor-widget-heading .elementor-widget-container {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 10px 0 !important;
+    backdrop-filter: none !important;
+}
+
+/* === FOOTER SOCIAL ICONS & LISTS === */
+footer .elementor-widget-icon-list .elementor-widget-container,
+footer .elementor-widget-social-icons .elementor-widget-container {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+}
+
+/* === FORM INPUTS === */
+.elementor-field-textual, input, textarea, select {
+    background: rgba(255, 255, 255, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    border-radius: 8px !important;
+    color: #0c4a6e !important;
+}
+footer h2, footer h3, footer p, footer a, footer .elementor-icon-list-text {
+    color: #0c4a6e !important;
+}
+
+/* === IMAGES === */
+.elementor-section:not(footer) .elementor-image-box-img img {
+    border-radius: 20px !important;
+}
+footer img { mix-blend-mode: multiply; }
+
+</style>
+
+<!-- JS FORCE FIX -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // 1. Force transparent backgrounds on specific elements that might be stuck
+    const selectorsToClear = [
+        "footer .elementor-widget-image-box .elementor-image-box-wrapper",
+        "header .elementor-widget-image-box .elementor-image-box-wrapper",
+        ".elementor-widget-theme-site-logo .elementor-widget-container",
+        ".elementor-location-header .elementor-widget-image .elementor-widget-container",
+        "header .elementor-logo a"
+    ];
+    
+    selectorsToClear.forEach(selector => {
+        document.querySelectorAll(selector).forEach(el => {
+            el.style.setProperty("background", "transparent", "important");
+            el.style.setProperty("background-color", "transparent", "important");
+            el.style.setProperty("box-shadow", "none", "important");
+            el.style.setProperty("border", "none", "important");
+            el.style.setProperty("backdrop-filter", "none", "important");
+        });
+    });
+
+    // 2. Remove Elementor's column/container backgrounds if they are white/grey
+    // This is risky but effective for removing white stripes
+    document.querySelectorAll('.elementor-section, .e-con, .elementor-column').forEach(el => {
+        const style = window.getComputedStyle(el);
+        if (style.backgroundColor !== 'rgba(0, 0, 0, 0)' && style.backgroundColor !== 'transparent') {
+           // We only clear it if it's likely a background color (not an image we want to keep)
+           // If the background is essentially white or grey, kill it.
+           // For safety, we just rely on the !important CSS rule, but we can enforce:
+           el.style.setProperty("background-color", "transparent", "important");
+        }
+    });
+});
+</script>
+
+
+
+
+<style id="contact-us-spacing-final">
+/* V11 - Table-based Email Alignment */
+.elementor-element-1a327498 p,
+.elementor-widget-text-editor p {
+    margin-bottom: 10px !important;
+    line-height: 1.4 !important;
+}
+.elementor-widget-icon-list .elementor-icon-list-items li.elementor-icon-list-item {
+    margin-bottom: 10px !important;
+}
+.elementor-widget-icon-list .elementor-icon-list-items li.elementor-icon-list-item:last-child {
+    margin-bottom: 0 !important;
+}
+.elementor-widget-icon-list .elementor-icon-list-text {
+    line-height: 1.4 !important;
+}
+.elementor-element-1a327498 .elementor-widget-container {
+    margin-bottom: 0 !important;
+}
+/* Table inside list item */
+.elementor-icon-list-text table {
+    display: inline-table;
+    vertical-align: top;
+}
+</style>
+<style>
+/* Option 8: Refined Glass + Bigger Footer Logo & Layout */
+body {
+    background: linear-gradient(180deg, #F0F9FF 0%, #BAE6FD 100%) !important;
+    background-attachment: fixed !important;
+    min-height: 100vh;
+}
+
+/* GLOBAL TRANSPARENCY */
+.elementor-section, .e-con, .elementor-column, .elementor-widget-wrap, 
+header, .elementor-location-header, footer, .elementor-location-footer {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* HEADER & FOOTER CLEANUP */
+header .elementor-element, footer .elementor-element,
+.elementor-location-header .elementor-element, .elementor-location-footer .elementor-element {
+    background-image: none !important;
+    background-color: transparent !important;
+    border: none !important;
+}
+
+/* FOOTER LAYOUT FIX: Bigger Logo + Vertically Aligned Text */
+footer .elementor-location-footer .e-con-parent {
+    align-items: center !important; /* Vertically center logo and text columns */
+    flex-wrap: nowrap !important;   /* Prevent wrapping if possible */
+}
+/* 1st Column: Logo (Increase width to 40%) */
+footer .elementor-location-footer .e-con-parent > .e-con-child:nth-child(1) {
+    width: 40% !important;
+    flex-basis: 40% !important;
+    max-width: 40% !important;
+}
+/* 2nd & 3rd Columns: Lists (Reduce to 30%) */
+footer .elementor-location-footer .e-con-parent > .e-con-child:nth-child(2),
+footer .elementor-location-footer .e-con-parent > .e-con-child:nth-child(3) {
+    width: 30% !important;
+    flex-basis: 30% !important;
+}
+
+/* FOOTER LOGO IMAGE RESIZE */
+/* Remove glass effect from logo container first */
+footer .elementor-widget-image-box .elementor-image-box-wrapper,
+footer .elementor-widget-image-box:hover .elementor-image-box-wrapper {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    transform: none !important;
+}
+/* Force Image to be bigger */
+footer .elementor-widget-image-box .elementor-image-box-img {
+    width: 100% !important;
+    text-align: left !important;
+}
+footer .elementor-widget-image-box img {
+    width: 280px !important; /* Significantly larger */
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+/* FIX: REMOVE WHITE LINES / DIVIDERS */
+.elementor-shape, .elementor-shape-top, .elementor-shape-bottom, .elementor-shape svg {
+    display: none !important;
+    height: 0 !important;
+}
+.elementor-divider { display: none !important; }
+.elementor-widget-spacer { background: transparent !important; }
+
+/* GLASSY CARDS (Main Content) */
+.elementor-widget-image-box .elementor-image-box-wrapper {
+    background: rgba(255, 255, 255, 0.4) !important; 
+    backdrop-filter: blur(20px) !important;          
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    border-radius: 20px;
+    padding: 24px;
+    display: flex !important;
+    flex-direction: column;
+    height: 100%; 
+    justify-content: flex-start;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+.elementor-widget-image-box:hover .elementor-image-box-wrapper {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* GLASSY ICON BOXES (Mission) */
+body:not(.elementor-location-footer) .elementor-widget-icon-box .elementor-widget-container {
+    background: rgba(255, 255, 255, 0.25) !important;
+    backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 16px;
+    padding: 20px !important;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05) !important;
+    transition: transform 0.3s ease;
+}
+body:not(.elementor-location-footer) .elementor-widget-icon-box:hover .elementor-widget-container {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.35) !important;
+}
+
+/* GLASSY FORMS */
+.elementor-widget-form, .wpcf7-form, form {
+    background: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 20px !important;
+    padding: 30px !important;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1) !important;
+}
+.elementor-field-textual, input, textarea, select {
+    background: rgba(255, 255, 255, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    border-radius: 8px !important;
+    color: #0c4a6e !important;
+}
+.elementor-field-label { color: #0c4a6e !important; font-weight: 500 !important; }
+
+/* GLASSY FLIP BOXES */
+.elementor-flip-box__front, .elementor-flip-box__back {
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+}
+
+/* FOOTER TEXT VISIBILITY */
+footer .elementor-heading-title, 
+footer .elementor-icon-list-text, 
+footer p, 
+footer a {
+    color: #0c4a6e !important; 
+}
+footer img { 
+    mix-blend-mode: multiply; 
+    border-radius: 12px; 
+}
+</style>
 </head>
 <body>
 <a href="services/new-ship-registration/index.html"><h3>Click here...</h3></a>
-
-
 
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function() {
@@ -120,5 +434,5 @@ document.addEventListener('DOMContentLoaded', function() {
 </style>
 </body>
 <!-- Created by HTTrack Website Copier/3.49-2 [XR&CO'2014] -->
-<!-- Original from pangminybm.com/?p=2998 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 18 Nov 2025 10:03:44 GMT -->
+<!-- Original from cmcsclass.org/?p=2998 by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 18 Nov 2025 10:03:44 GMT -->
 </html>
