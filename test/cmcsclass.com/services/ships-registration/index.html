@@ -487,6 +487,74 @@ footer img {
     border-radius: 12px; 
 }
 </style>
+
+<style>
+/* === 国旗轮播图 修复样式 === */
+
+/* 1. 给轮播容器加内边距，给箭头腾出位置 */
+.elementor-widget-n-carousel .e-n-carousel {
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+    position: relative !important;
+}
+
+/* 2. 调整箭头位置到两侧，不遮挡内容 */
+.elementor-widget-n-carousel .elementor-swiper-button-prev,
+.elementor-widget-n-carousel .elementor-swiper-button-next {
+    width: 40px !important;
+    height: 40px !important;
+    color: #444 !important;
+    background: rgba(255,255,255,0.8) !important;
+    border-radius: 50% !important;
+    top: 35% !important; /* 稍微向上提一点以对齐图片中心，而非包含文字的整体中心 */
+    transform: translateY(-50%) !important;
+    margin-top: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
+    z-index: 20 !important;
+}
+
+.elementor-widget-n-carousel .elementor-swiper-button-prev {
+    left: 0 !important;
+}
+
+.elementor-widget-n-carousel .elementor-swiper-button-next {
+    right: 0 !important;
+}
+
+/* 3. 统一图片大小和样式 */
+.elementor-widget-n-carousel .swiper-slide .elementor-widget-image img {
+    width: 240px !important;
+    height: 160px !important;
+    object-fit: cover !important;
+    border-radius: 4px !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15) !important;
+    margin: 0 auto !important;
+    display: block !important;
+}
+
+/* 4. 确保Slide内容居中 */
+.elementor-widget-n-carousel .swiper-slide .elementor-widget-image {
+    display: flex !important;
+    justify-content: center !important;
+    margin-bottom: 12px !important;
+}
+.elementor-widget-n-carousel .swiper-slide {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+.widget-image-caption {
+    text-align: center !important;
+    font-size: 14px !important;
+    color: #555 !important;
+    margin-top: 8px !important;
+}
+</style>
+
 </head>
 <body class="wp-singular page-template-default page page-id-49 page-parent page-child parent-pageid-12160 wp-custom-logo wp-embed-responsive wp-theme-hello-elementor wp-child-theme-hello-theme-child-master snd-default hello-elementor-default elementor-default elementor-template-full-width elementor-kit-8 elementor-page elementor-page-49">
 <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
@@ -549,10 +617,10 @@ footer img {
 </section>
 <div class="elementor-element elementor-element-d428444 e-flex e-con-boxed e-con e-parent" data-element_type="container" data-id="d428444" data-settings='{"background_background":"gradient","animation":"none"}'>
 <div class="e-con-inner">
-<div class="elementor-element elementor-element-d5139a1 elementor-arrows-position-outside elementor-pagination-type-bullets elementor-pagination-position-outside elementor-invisible elementor-widget elementor-widget-n-carousel" data-element_type="widget" data-id="d5139a1" data-settings='{"carousel_items":[{"slide_title":"Comoros","_id":"com001"},{"slide_title":"Tanzania","_id":"tan001"},{"slide_title":"Cameroon","_id":"cam001"},{"slide_title":"São Tomé and Príncipe","_id":"stp001"},{"slide_title":"Togo","_id":"tog001"}],"slides_to_show":"5","slides_to_scroll":"2","image_spacing_custom":{"unit":"px","size":46,"sizes":[]},"_animation":"fadeInUp","slides_to_show_tablet":"2","slides_to_show_mobile":"1","autoplay":"yes","autoplay_speed":5000,"pause_on_hover":"yes","pause_on_interaction":"yes","infinite":"yes","speed":500,"offset_sides":"none","arrows":"yes","pagination":"bullets","image_spacing_custom_tablet":{"unit":"px","size":"","sizes":[]},"image_spacing_custom_mobile":{"unit":"px","size":"","sizes":[]}}' data-widget_type="nested-carousel.default">
+<div class="elementor-element elementor-element-d5139a1 elementor-arrows-position-outside elementor-pagination-type-bullets elementor-pagination-position-outside elementor-invisible elementor-widget elementor-widget-n-carousel" data-element_type="widget" data-id="d5139a1" data-settings='{"carousel_items":[{"slide_title":"Comoros","_id":"com001"},{"slide_title":"Tanzania","_id":"tan001"},{"slide_title":"Cameroon","_id":"cam001"},{"slide_title":"São Tomé and Príncipe","_id":"stp001"}],"slides_to_show":"4","slides_to_scroll":"2","image_spacing_custom":{"unit":"px","size":46,"sizes":[]},"_animation":"fadeInUp","slides_to_show_tablet":"2","slides_to_show_mobile":"1","autoplay":"yes","autoplay_speed":5000,"pause_on_hover":"yes","pause_on_interaction":"yes","infinite":"yes","speed":500,"offset_sides":"none","arrows":"yes","pagination":"bullets","image_spacing_custom_tablet":{"unit":"px","size":"","sizes":[]},"image_spacing_custom_mobile":{"unit":"px","size":"","sizes":[]}}' data-widget_type="nested-carousel.default">
 <div aria-label="Carousel" aria-roledescription="carousel" class="e-n-carousel swiper" dir="ltr" role="region">
 <div aria-live="off" class="swiper-wrapper">
-<div aria-label="1 of 5" aria-roledescription="slide" class="swiper-slide" data-slide="1" role="group">
+<div aria-label="1 of 4" aria-roledescription="slide" class="swiper-slide" data-slide="1" role="group">
 <div class="elementor-element elementor-element-1b01a8c e-flex e-con-boxed e-con e-child" data-element_type="container" data-id="1b01a8c">
 <div class="e-con-inner">
 <div class="elementor-element elementor-element-dc270af elementor-widget elementor-widget-image" data-element_type="widget" data-id="dc270af" data-widget_type="image.default">
@@ -563,7 +631,7 @@ footer img {
 </div>
 </div>
 </div>
-<div aria-label="2 of 5" aria-roledescription="slide" class="swiper-slide" data-slide="2" role="group">
+<div aria-label="2 of 4" aria-roledescription="slide" class="swiper-slide" data-slide="2" role="group">
 <div class="elementor-element elementor-element-6b84b96 e-flex e-con-boxed e-con e-child" data-element_type="container" data-id="6b84b96">
 <div class="e-con-inner">
 <div class="elementor-element elementor-element-20907b1 elementor-widget elementor-widget-image" data-element_type="widget" data-id="20907b1" data-widget_type="image.default">
@@ -574,7 +642,7 @@ footer img {
 </div>
 </div>
 </div>
-<div aria-label="3 of 5" aria-roledescription="slide" class="swiper-slide" data-slide="3" role="group">
+<div aria-label="3 of 4" aria-roledescription="slide" class="swiper-slide" data-slide="3" role="group">
 <div class="elementor-element elementor-element-cam001 e-flex e-con-boxed e-con e-child" data-element_type="container" data-id="cam001">
 <div class="e-con-inner">
 <div class="elementor-element elementor-element-cam002 elementor-widget elementor-widget-image" data-element_type="widget" data-id="cam002" data-widget_type="image.default">
@@ -585,23 +653,12 @@ footer img {
 </div>
 </div>
 </div>
-<div aria-label="4 of 5" aria-roledescription="slide" class="swiper-slide" data-slide="4" role="group">
+<div aria-label="4 of 4" aria-roledescription="slide" class="swiper-slide" data-slide="4" role="group">
 <div class="elementor-element elementor-element-stp001 e-flex e-con-boxed e-con e-child" data-element_type="container" data-id="stp001">
 <div class="e-con-inner">
 <div class="elementor-element elementor-element-stp002 elementor-widget elementor-widget-image" data-element_type="widget" data-id="stp002" data-widget_type="image.default">
 <figure class="wp-caption">
 <img alt="" class="attachment-large size-large" decoding="async" height="534" loading="lazy" src="../../wp-content/uploads/2025/07/São Tomé and Príncipe.svg.png" width="800"/> <figcaption class="widget-image-caption wp-caption-text">São Tomé and Príncipe</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<div aria-label="5 of 5" aria-roledescription="slide" class="swiper-slide" data-slide="5" role="group">
-<div class="elementor-element elementor-element-616fda2 e-flex e-con-boxed e-con e-child" data-element_type="container" data-id="616fda2">
-<div class="e-con-inner">
-<div class="elementor-element elementor-element-38fcc11 elementor-widget elementor-widget-image" data-element_type="widget" data-id="38fcc11" data-widget_type="image.default">
-<figure class="wp-caption">
-<img alt="" class="attachment-large size-large wp-image-12969" decoding="async" height="495" loading="lazy" src="../../wp-content/uploads/2025/07/Flag_of_Togo.svg_-1024x633.png" width="800"/> <figcaption class="widget-image-caption wp-caption-text">Togo</figcaption>
 </figure>
 </div>
 </div>
