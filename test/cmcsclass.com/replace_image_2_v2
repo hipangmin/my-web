@@ -1,0 +1,30 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Replace Image 2 (Attempt 2): Ship Registration
+Target: ship-registr.jpeg
+Source: ship_registration_v2_....png (Convert to JPEG)
+"""
+
+import os
+from PIL import Image
+
+NEW_IMAGE_SOURCE = r"C:/Users/Administrator/.gemini/antigravity/brain/aef38e19-3bda-43f5-bb5c-03fd03adb4dd/ship_registration_v2_1765355173517.png"
+TARGET_IMAGE_PATH = r"d:\ypm\my web\test\cmcsclass.com\wp-content\uploads\2025\07\ship-registr.jpeg"
+
+def replace_image():
+    if not os.path.exists(NEW_IMAGE_SOURCE):
+        print(f"Error: Source image not found at {NEW_IMAGE_SOURCE}")
+        return
+    
+    try:
+        with Image.open(NEW_IMAGE_SOURCE) as img:
+            rgb_img = img.convert('RGB')
+            rgb_img.save(TARGET_IMAGE_PATH, quality=95)
+            
+        print(f"Successfully converted and replaced: {TARGET_IMAGE_PATH}")
+    except Exception as e:
+        print(f"Failed to replace image: {e}")
+
+if __name__ == "__main__":
+    replace_image()

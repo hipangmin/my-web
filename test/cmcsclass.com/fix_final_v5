@@ -1,0 +1,118 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+FINAL FIX V5
+1. Remove Location from Services list (wrong place)
+2. Restore Location text to the original text-editor widget above Contact Us list
+3. Fix Email format: "Email: technical@..." on same line
+"""
+
+import os
+import re
+
+TARGET_DIR = r"d:\ypm\my web\test\cmcsclass.com"
+
+def fix_file(filepath):
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+    except Exception as e:
+        print(f"  Error reading: {e}")
+        return False
+    
+    original = content
+    
+    # 1. Remove the wrongly inserted Location from Services list
+    # Pattern: the <li> with Location that we wrongly added
+    wrong_location_pattern = r'<li class="elementor-icon-list-item"><span class="elementor-icon-list-text" style="padding-left: 0;">Location: São Tomé and Príncipe</span></li>\s*'
+    content = re.sub(wrong_location_pattern, '', content)
+    
+    # 2. Restore Location to the empty text-editor widget
+    # Find the empty <body><p></p></body> and replace with the Location text
+    empty_p_pattern = r'<body><p></p></body>'
+    location_restored = '<body><p>Location: São Tomé and Príncipe</p></body>'
+    content = content.replace(empty_p_pattern, location_restored)
+    
+    # 3. Fix Email format - ensure "Email: technical@..." is on same line
+    # Current broken format might have Email: on its own line
+    # We want: Email: technical@cmcsclass.org<br>       fleet@cmcsclass.org
+    
+    # Pattern to match current email block structure
+    email_pattern = r'<span class="elementor-icon-list-text">Email:\s*<a href="mailto:technical@cmcsclass\.org"[^>]*>technical@cmcsclass\.org</a><br>\s*<span style="margin-left: 2\.8em;"><a href="mailto:fleet@cmcsclass\.org"[^>]*>fleet@cmcsclass\.org</a></span></span>'
+    
+    email_replacement = '''<span class="elementor-icon-list-text">Email: <a href="mailto:technical@cmcsclass.org" style="color: inherit; text-decoration: none;">technical@cmcsclass.org</a><br><span style="margin-left: 3.05em;"><a href="mailto:fleet@cmcsclass.org" style="color: inherit; text-decoration: none;">fleet@cmcsclass.org</a></span></span>'''
+    
+    content = re.sub(email_pattern, email_replacement, content)
+    
+    # 4. Update CSS for better spacing
+    new_css = '''<style id="contact-us-spacing-final">
+/* Final Contact Us Spacing Fix */
+/* Location paragraph - reduce bottom margin */
+.elementor-element-1a327498 p,
+.elementor-widget-text-editor p {
+    margin-bottom: 12px !important;
+    line-height: 1.5 !important;
+}
+
+/* List items - consistent spacing */
+.elementor-widget-icon-list .elementor-icon-list-items li.elementor-icon-list-item {
+    margin-bottom: 10px !important;
+    padding-bottom: 0 !important;
+}
+.elementor-widget-icon-list .elementor-icon-list-items li.elementor-icon-list-item:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* Email block line height */
+.elementor-widget-icon-list .elementor-icon-list-text {
+    line-height: 1.6 !important;
+}
+
+/* Remove any extra margin from text editor widget container */
+.elementor-element-1a327498 .elementor-widget-container,
+.elementor-widget-text-editor .elementor-widget-container {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+</style>'''
+    
+    # Replace old CSS block with new one
+    old_css_pattern = r'<style id="contact-us-spacing-final">.*?</style>'
+    if re.search(old_css_pattern, content, re.DOTALL):
+        content = re.sub(old_css_pattern, new_css, content, flags=re.DOTALL)
+    elif '</head>' in content:
+        content = content.replace('</head>', new_css + '\n</head>')
+    
+    if content != original:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+        return True
+    
+    return False
+
+def main():
+    print("=" * 60)
+    print("FINAL FIX V5 - Correct Location & Email")
+    print("=" * 60)
+    
+    fixed_count = 0
+    
+    for root, dirs, files in os.walk(TARGET_DIR):
+        skip_dirs = ['.git', 'node_modules', '__pycache__', 'wp-json']
+        dirs[:] = [d for d in dirs if d not in skip_dirs]
+        
+        for file in files:
+            if file.endswith('.html'):
+                filepath = os.path.join(root, file)
+                rel_path = os.path.relpath(filepath, TARGET_DIR)
+                
+                if fix_file(filepath):
+                    fixed_count += 1
+                    print(f"  Fixed: {rel_path}")
+    
+    print("\n" + "=" * 60)
+    print(f"Files Modified: {fixed_count}")
+    print("=" * 60)
+
+if __name__ == "__main__":
+    main()

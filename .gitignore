@@ -1,2 +1,34 @@
+# Scripts
 *.py
-*.md
+*.bat
+*.sh
+*.ps1
+
+# Text, Logs, Backups
+*.txt
+*.log
+*.whtt
+*.bak
+
+# Agent files
+.agent/
+.gemini/
+
+# Unrelated crawl data in test/
+test/hts-cache/
+test/pangminybm.com/
+test/www.google.com/
+test/*.py
+test/*.txt
+test/*.whtt
+test/backblue.gif
+test/fade.gif
+test/cookies.txt
+test/hts-log.txt
+
+# Root junk (optional, but requested to mainly keep cmcsclass.com)
+add_security.txt
+remove_security.txt
+check_server.py
+backblue.gif
+fade.gif

@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Replace Image 1: Class and Statutory
+"""
+
+import os
+import shutil
+
+# This is the path where the AI saved the generated image (from the previous tool output)
+NEW_IMAGE_SOURCE = r"C:/Users/Administrator/.gemini/antigravity/brain/aef38e19-3bda-43f5-bb5c-03fd03adb4dd/class_and_statutory_1765354856495.png"
+
+# This is the target path in your website structure
+TARGET_IMAGE_PATH = r"d:\ypm\my web\test\cmcsclass.com\wp-content\uploads\2025\07\class-and-stat-.png"
+
+def replace_image():
+    if not os.path.exists(NEW_IMAGE_SOURCE):
+        print(f"Error: Source image not found at {NEW_IMAGE_SOURCE}")
+        return
+    
+    if not os.path.exists(TARGET_IMAGE_PATH):
+        print(f"Warning: Target image not found at {TARGET_IMAGE_PATH}. It will be created.")
+    
+    try:
+        shutil.copy2(NEW_IMAGE_SOURCE, TARGET_IMAGE_PATH)
+        print(f"Successfully replaced: {TARGET_IMAGE_PATH}")
+    except Exception as e:
+        print(f"Failed to replace image: {e}")
+
+if __name__ == "__main__":
+    replace_image()

@@ -1,0 +1,160 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Fix Consultation Section
+1. Updates the text content with the new, professional copy.
+2. Centers the text block vertically to align with the form on the right.
+"""
+
+import os
+import re
+
+TARGET_DIR = r"d:\ypm\my web\test\cmcsclass.com"
+
+# New Text Content with HTML line breaks for spacing
+NEW_TEXT = """<p>If you still have questions or aren’t sure which service is right for you, feel free to reach out.</p>
+<p style="margin-top: 15px;">Our customer support team is ready to help around the clock—24 hours a day, 7 days a week.</p>
+<p style="margin-top: 15px;">Or simply complete the “Call Me Back” form, and we’ll contact you within 24 hours (during the next business day).</p>"""
+
+def fix_consultation(filepath):
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+    except:
+        return False
+    
+    original = content
+    
+    # 1. Identify the Text Widget containing the old text
+    # The old text starts with "If you need any further questions..."
+    # We look for the surrounding widget div to apply vertical alignment
+    
+    # Regex to capture the text widget's content area
+    # Looking for a paragraph that contains the start of the old text
+    text_pattern = r'(<div[^>]*elementor-widget-text-editor[^>]*>.*?<div class="elementor-widget-container">)(.*?)(</div>\s*</div>)'
+    
+    # We need to be careful with regex matching standard Elementor nesting
+    match = re.search(r'If you need any further questions', content)
+    if not match:
+        return False
+
+    # 2. Update the Text
+    # We will simply find the specific paragraph start and end and swap it
+    # Old text snippet to identify the block
+    old_text_start = "If you need any further questions or you could not decide which service suits you then please contact us."
+    
+    # Find the container wrapper for this column/widget to centered it
+    # We'll look for the column wrapper "elementor-widget-wrap" or specific ID if possible
+    # But applying `display: flex; flex-direction: column; justify-content: center; height: 100%;` to the `elementor-widget-wrap` is usually the way.
+    
+    # Let's simple replace the content first.
+    # We will use a broader replacement to catch the paragraphs
+    
+    # Regex for the specific block of text
+    # It seems the old text is inside <p>...</p> tags or just plain text in a div
+    
+    # Let's construct a pattern that matches the specific old text block broadly
+    # "If you need... (business day)."
+    old_block_pattern = r'If you need any further questions.*?\(a business day\)\.'
+    
+    # Check if we can find it
+    if re.search(old_block_pattern, content, re.DOTALL):
+        content = re.sub(old_block_pattern, NEW_TEXT, content, flags=re.DOTALL)
+    
+    # 3. Fix Vertical Alignment
+    # We need to find the COLUMN that holds this text "REQUEST A FREE CONSULTATION"
+    # and set it to vertical-align: middle or flex align-center.
+    
+    # Find the heading widget
+    heading_marker = "REQUEST A FREE CONSULTATION"
+    # We want to effect the parent column.
+    # In Elementor, it's roughly: Section -> Container -> Widget (Heading) + Widget (Text)
+    # We want the Container holding these to be centered.
+    
+    # Let's try to inject a style into the text widget wrapper itself to push it down?
+    # No, true vertical centering is better.
+    
+    # We can inject a style block that targets this specific section based on a surrounding ID or class if unique.
+    # looking at the screenshot, the left side is a column.
+    
+    # Start searching backwards from "REQUEST A FREE CONSULTATION" to find the parent column
+    # <div class="elementor-element ... e-con-full ... " ...>
+    
+    # Strategy: Wrap the updated text and the heading in a div that forces centering?
+    # Or, easier: Just add `margin-top: 60px;` (approximate) to the heading or the container.
+    # True centering is best.
+    
+    # Let's try to add `display: flex; flex-direction: column; justify-content: center;` to the parent container of the text.
+    
+    # Search for the widget ID or common class near the text. 
+    # Let's apply a style to the Heading Widget to push it down, OR apply flex formatting to its container.
+    
+    # To be safe and robust across files, let's inject a CSS rule that targets this specific layout structure if possible.
+    # But since we are editing HTML, let's apply inline styles to the heading widget to push the whole block down.
+    # The text follows the heading.
+    
+    # Adjust: Find "REQUEST A FREE CONSULTATION" and add margin-top to its parent widget container
+    # <div class="elementor-element ... elementor-widget-heading ...">
+    
+    heading_pattern = r'(<div class="elementor-element[^"]*elementor-widget-heading[^>]*>)'
+    # We need to make sure it's the right heading.
+    
+    # Safest bet: Find the text "REQUEST A FREE CONSULTATION" and look at its immediate parent container.
+    # Then add `style="margin-top: auto; margin-bottom: auto;"` if it's a flex item?
+    
+    # Let's use `margin-top: 100px` on the Heading to visually push it down.
+    # This is a "quick fix" for alignment that works reliably without breaking layout structure.
+    # Wait, 100px might be too much. Let's try `padding-top: 80px`.
+    
+    # Locate the heading content
+    if heading_marker in content:
+        # Find the widget wrapper for this heading
+        # It usually looks like <div class="elementor-element elementor-element-xxxx elementor-widget elementor-widget-heading" ... >
+        # We will add style="align-self: center;" if it's a flex container, or just padding.
+        
+        # Let's try to find the specific element ID for this heading if it's consistent.
+        # But IDs change.
+        
+        # We'll use a regex to find the specific heading widget wrapper
+        # matching the content inside.
+        
+        # Pattern: <div class="elementor-widget-container"> ... <h2 ...>REQUEST A FREE CONSULTATION</h2>
+        
+        # Actually, let's just wrap the Headline + New Text in a <div> with `display:flex; flex-direction:column; justify-content:center; height:100%;`
+        # This might break Elementor structure.
+        
+        # SIMPLEST FIX: Add a spacer or margin to the Heading.
+        # Replaces:
+        # <h2 class="elementor-heading-title elementor-size-default">REQUEST A FREE CONSULTATION</h2>
+        # with:
+        # <h2 class="elementor-heading-title elementor-size-default" style="margin-top: 60px;">REQUEST A FREE CONSULTATION</h2>
+        
+        h_pattern = r'(<h[1-6] class="elementor-heading-title elementor-size-default">REQUEST A FREE CONSULTATION</h[1-6]>)'
+        h_replacement = r'<h2 class="elementor-heading-title elementor-size-default" style="padding-top: 4vh;">REQUEST A FREE CONSULTATION</h2>'
+        
+        content = re.sub(h_pattern, h_replacement, content)
+
+    if content != original:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+        return True
+    return False
+
+def main():
+    print("=" * 60)
+    print("FIX CONSULTATION SECTION - Text & Alignment")
+    print("=" * 60)
+    
+    fixed = 0
+    for root, dirs, files in os.walk(TARGET_DIR):
+        dirs[:] = [d for d in dirs if d not in ['.git', 'node_modules', 'wp-json']]
+        for file in files:
+            if file.endswith('.html'):
+                if fix_consultation(os.path.join(root, file)):
+                    fixed += 1
+                    print(f"  Fixed: {file}")
+    
+    print(f"\nUpdated {fixed} files")
+
+if __name__ == "__main__":
+    main()

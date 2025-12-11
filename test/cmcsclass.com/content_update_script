@@ -1,0 +1,251 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Website Content Update Script
+Updates branding, contact info, flags, and domain links across all HTML files.
+"""
+
+import os
+import re
+
+# Target directory
+TARGET_DIR = r"d:\ypm\my web\test\cmcsclass.com"
+
+# ============================================
+# REPLACEMENT DEFINITIONS
+# ============================================
+
+# 1. Brand name unification
+BRAND_REPLACEMENTS = [
+    ("Center Marine Maritime", "Center Marine Certificate Service"),
+]
+
+# 2. Domain replacement
+DOMAIN_REPLACEMENTS = [
+    ("pangminybm.com", "cmcsclass.org"),
+]
+
+# 3. Location replacement
+LOCATION_REPLACEMENTS = [
+    ("Location: Istanbul/Turkey", "Location: São Tomé and Príncipe"),
+    ("Istanbul/Turkey", "São Tomé and Príncipe"),
+]
+
+# 4. Email replacement - need to handle HTML structure
+OLD_EMAIL = "info@pangminybm.com"
+NEW_EMAILS_HTML = """<span class="elementor-icon-list-text">Email: technical@cmcsclass.org</span>
+</a>
+</li>
+<li class="elementor-icon-list-item">
+<a href="mailto:fleet@cmcsclass.org">
+<span class="elementor-icon-list-text">Email: fleet@cmcsclass.org</span>"""
+
+# 5. Offshore Companies list (in services/index.html)
+OLD_OFFSHORE = "Bahamas, Barbados, Cook Islands, Dominica, Liberia, Malta, Marshal Island, Moldova, Nevis, Panama, St. Vincent &amp; Grenadines"
+NEW_OFFSHORE = "Comoros, Tanzania, Cameroon, São Tomé and Príncipe"
+
+OLD_OFFSHORE_ALT = "Bahamas, Barbados, Cook Islands, Dominica, Liberia, Malta, Marshal Island, Moldova, Nevis, Panama, St. Vincent & Grenadines"
+
+# 6. Our Flags list
+OLD_FLAGS_PATTERNS = [
+    r"Belize, Bolivia, Comoros, Dominica, Honduras,*, Jamaica, Moldova, Mongolia, Palau, Panama, Sierra Leone, Tanzania, Togo, St\. Kitts and Nevis, St\. Vincent and the Grenadine",
+]
+NEW_FLAGS = "Comoros, Tanzania, Cameroon, São Tomé and Príncipe, Togo"
+
+# ============================================
+# STATISTICS
+# ============================================
+stats = {
+    "files_processed": 0,
+    "files_modified": 0,
+    "brand_replacements": 0,
+    "domain_replacements": 0,
+    "location_replacements": 0,
+    "email_replacements": 0,
+    "offshore_replacements": 0,
+    "flags_replacements": 0,
+}
+
+def process_file(filepath):
+    """Process a single HTML file with all replacements."""
+    global stats
+    
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+    except Exception as e:
+        print(f"  Error reading {filepath}: {e}")
+        return False
+    
+    original_content = content
+    modified = False
+    
+    # 1. Brand name replacements
+    for old, new in BRAND_REPLACEMENTS:
+        if old in content:
+            count = content.count(old)
+            content = content.replace(old, new)
+            stats["brand_replacements"] += count
+            modified = True
+            print(f"    Brand: Replaced '{old}' x{count}")
+    
+    # 2. Domain replacements
+    for old, new in DOMAIN_REPLACEMENTS:
+        if old in content:
+            count = content.count(old)
+            content = content.replace(old, new)
+            stats["domain_replacements"] += count
+            modified = True
+            print(f"    Domain: Replaced '{old}' x{count}")
+    
+    # 3. Location replacements
+    for old, new in LOCATION_REPLACEMENTS:
+        if old in content:
+            count = content.count(old)
+            content = content.replace(old, new)
+            stats["location_replacements"] += count
+            modified = True
+            print(f"    Location: Replaced '{old}' x{count}")
+    
+    # 4. Email replacement (complex - need to insert second email line)
+    if OLD_EMAIL in content:
+        # Simple text replacement for display text
+        old_email_display = f"Email: {OLD_EMAIL}"
+        new_email_display = "Email: technical@cmcsclass.org"
+        if old_email_display in content:
+            count = content.count(old_email_display)
+            content = content.replace(old_email_display, new_email_display)
+            stats["email_replacements"] += count
+            modified = True
+            print(f"    Email display: Replaced x{count}")
+        
+        # Also replace any remaining email addresses
+        if OLD_EMAIL in content:
+            count = content.count(OLD_EMAIL)
+            content = content.replace(OLD_EMAIL, "technical@cmcsclass.org")
+            modified = True
+            print(f"    Email address: Replaced x{count}")
+    
+    # 5. Offshore Companies list
+    if OLD_OFFSHORE in content:
+        content = content.replace(OLD_OFFSHORE, NEW_OFFSHORE)
+        stats["offshore_replacements"] += 1
+        modified = True
+        print(f"    Offshore: Replaced (HTML entities version)")
+    
+    if OLD_OFFSHORE_ALT in content:
+        content = content.replace(OLD_OFFSHORE_ALT, NEW_OFFSHORE)
+        stats["offshore_replacements"] += 1
+        modified = True
+        print(f"    Offshore: Replaced (plain text version)")
+    
+    # 6. Our Flags list - use regex for flexibility
+    flags_pattern = r"Belize,\s*Bolivia,\s*Comoros,\s*Dominica,\s*Honduras,*\s*,*\s*Jamaica,\s*Moldova,\s*Mongolia,\s*Palau,\s*Panama,\s*Sierra Leone,\s*Tanzania,\s*Togo,\s*St\.?\s*Kitts and Nevis,\s*St\.?\s*Vincent and the Grenadine[s]?"
+    if re.search(flags_pattern, content, re.IGNORECASE):
+        content = re.sub(flags_pattern, NEW_FLAGS, content, flags=re.IGNORECASE)
+        stats["flags_replacements"] += 1
+        modified = True
+        print(f"    Flags: Replaced list")
+    
+    # Save if modified
+    if modified:
+        try:
+            with open(filepath, 'w', encoding='utf-8') as f:
+                f.write(content)
+            stats["files_modified"] += 1
+            return True
+        except Exception as e:
+            print(f"  Error writing {filepath}: {e}")
+            return False
+    
+    return False
+
+def add_second_email_to_footer(filepath):
+    """Add the second email (fleet@cmcsclass.org) after the first email in footer."""
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+    except:
+        return False
+    
+    # Pattern to find the email list item and add a second one after it
+    # Look for the pattern where we have technical email and need to add fleet email
+    pattern = r'(<span class="elementor-icon-list-text">Email: technical@cmcsclass\.org</span>\s*</a>\s*</li>)'
+    
+    # Check if fleet email already exists
+    if "fleet@cmcsclass.org" in content:
+        return False  # Already has fleet email
+    
+    # Check if technical email exists (means we already replaced the old email)
+    if "technical@cmcsclass.org" not in content:
+        return False  # Technical email not found
+    
+    replacement = r'''\1
+<li class="elementor-icon-list-item">
+<a href="mailto:fleet@cmcsclass.org">
+<span class="elementor-icon-list-text">Email: fleet@cmcsclass.org</span>
+</a>
+</li>'''
+    
+    new_content, count = re.subn(pattern, replacement, content, flags=re.DOTALL)
+    
+    if count > 0:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(new_content)
+        print(f"    Added fleet@ email x{count}")
+        return True
+    
+    return False
+
+def main():
+    """Main function to process all HTML files."""
+    print("=" * 60)
+    print("WEBSITE CONTENT UPDATE SCRIPT")
+    print("=" * 60)
+    print(f"\nTarget directory: {TARGET_DIR}\n")
+    
+    # Find all HTML files
+    html_files = []
+    for root, dirs, files in os.walk(TARGET_DIR):
+        # Skip certain directories
+        skip_dirs = ['.git', 'node_modules', '__pycache__', 'wp-json']
+        dirs[:] = [d for d in dirs if d not in skip_dirs]
+        
+        for file in files:
+            if file.endswith('.html'):
+                html_files.append(os.path.join(root, file))
+    
+    print(f"Found {len(html_files)} HTML files to process.\n")
+    print("-" * 60)
+    
+    # Process each file
+    for filepath in html_files:
+        stats["files_processed"] += 1
+        rel_path = os.path.relpath(filepath, TARGET_DIR)
+        print(f"\nProcessing: {rel_path}")
+        process_file(filepath)
+    
+    print("\n" + "-" * 60)
+    print("\nPhase 2: Adding second email line to footers...")
+    
+    # Second pass to add fleet email
+    for filepath in html_files:
+        add_second_email_to_footer(filepath)
+    
+    # Print summary
+    print("\n" + "=" * 60)
+    print("SUMMARY")
+    print("=" * 60)
+    print(f"Files processed:      {stats['files_processed']}")
+    print(f"Files modified:       {stats['files_modified']}")
+    print(f"Brand replacements:   {stats['brand_replacements']}")
+    print(f"Domain replacements:  {stats['domain_replacements']}")
+    print(f"Location replacements:{stats['location_replacements']}")
+    print(f"Email replacements:   {stats['email_replacements']}")
+    print(f"Offshore replacements:{stats['offshore_replacements']}")
+    print(f"Flags replacements:   {stats['flags_replacements']}")
+    print("=" * 60)
+    print("\nDone!")
+
+if __name__ == "__main__":
+    main()

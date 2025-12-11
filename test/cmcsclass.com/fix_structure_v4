@@ -1,0 +1,139 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Fix Spacing V4 - Structural Fix
+1. Move "Location" INTO the icon list to guarantee perfect spacing consistency.
+2. Remove the old independent Location widget content.
+3. Apply consistent spacing CSS to the list.
+"""
+
+import os
+import re
+
+TARGET_DIR = r"d:\ypm\my web\test\cmcsclass.com"
+
+# 1. Regex to find and remove the old Location text block (including wrapping p/body tags if present)
+# We match the text specifically to avoid removing other text editors
+REMOVE_LOCATION_PATTERN = r'(<div[^>]*elementor-widget-text-editor[^>]*>.*?)(Location:\s*São Tomé and Príncipe)(.*?</div>)'
+
+# 2. Regex to inject Location into the start of the list
+# We look for the start of the list ul
+LIST_START_PATTERN = r'(<ul class="elementor-icon-list-items">)'
+
+# The new Location list item to insert
+NEW_LOCATION_ITEM = r'\1\n<li class="elementor-icon-list-item"><span class="elementor-icon-list-text" style="padding-left: 0;">Location: São Tomé and Príncipe</span></li>'
+
+# 3. CSS for perfect 10px spacing everywhere
+SPACING_CSS_V4 = '''<style id="contact-us-spacing-final">
+/* Final Structural Spacing Fix */
+.elementor-widget-icon-list .elementor-icon-list-items li.elementor-icon-list-item {
+    margin-bottom: 12px !important; /* Unified comfortable spacing */
+    padding-bottom: 0 !important;
+}
+.elementor-widget-icon-list .elementor-icon-list-items li.elementor-icon-list-item:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* Email Block Specifics */
+.elementor-widget-icon-list .elementor-icon-list-text {
+    line-height: 1.5 !important; 
+}
+/* Ensure the second line of email is treated as part of the same block visually */
+.elementor-widget-icon-list .elementor-icon-list-text a {
+    display: inline-block;
+    text-decoration: none !important;
+}
+
+/* Hide any empty text editor widgets that might remain after we clear the text */
+.elementor-widget-text-editor:empty,
+.elementor-widget-text-editor .elementor-widget-container:empty {
+    display: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+</style>'''
+
+def fix_file_structure(filepath):
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+    except Exception as e:
+        print(f"  Error reading {filepath}: {e}")
+        return False
+    
+    modified = False
+    
+    # 1. Check if Location is already in the list (to prevent double insertion)
+    if 'class="elementor-icon-list-text">Location: São Tomé and Príncipe</span>' in content:
+        # It's already in the list, but maybe we still need to remove the old widget?
+        # Let's check for the OLD widget existence
+        if re.search(r'<p>\s*Location: São Tomé and Príncipe\s*</p>', content):
+             pass # Needs cleanup
+        else:
+             # Likely already fixed, but let's update CSS just in case
+             pass
+
+    # 2. Remove the OLD Location Text
+    # We replace the text content with empty string, effectively clearing the widget
+    # We use a broad regex to catch varations like <body><p>... or just <p>...
+    clean_content = re.sub(r'Location:\s*São Tomé and Príncipe', '', content)
+    
+    if clean_content != content:
+        content = clean_content
+        modified = True
+        print(f"  Removed old Location text")
+    
+    # 3. Insert Location into the List (if not already there)
+    # Check if we have the list in this file
+    if '<ul class="elementor-icon-list-items">' in content:
+        if 'Location: São Tomé and Príncipe' not in content: # Only insert if we didn't just delete it? 
+            # Wait, we just deleted it from the TEXT WIDGET.
+            # We need to insert it into the LIST.
+            content = re.sub(LIST_START_PATTERN, NEW_LOCATION_ITEM, content, count=1)
+            modified = True
+            print(f"  Inserted Location into List")
+        
+    # 4. Inject/Update CSS
+    if '</head>' in content:
+        # Remove old spacing fix blocks if they exist to avoid clutter
+        content = re.sub(r'<style id="contact-us-spacing-fix">.*?</style>', '', content, flags=re.DOTALL)
+        
+        if 'id="contact-us-spacing-final"' not in content:
+            content = content.replace('</head>', SPACING_CSS_V4 + '\n</head>')
+            modified = True
+    
+    if modified:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+        return True
+    
+    return False
+
+def main():
+    print("=" * 60)
+    print("SPACING FIX V4 - STRUCTURE REFACTOR")
+    print("=" * 60)
+    
+    fixed_count = 0
+    
+    for root, dirs, files in os.walk(TARGET_DIR):
+        skip_dirs = ['.git', 'node_modules', '__pycache__', 'wp-json']
+        dirs[:] = [d for d in dirs if d not in skip_dirs]
+        
+        for file in files:
+            if file.endswith('.html'):
+                filepath = os.path.join(root, file)
+                rel_path = os.path.relpath(filepath, TARGET_DIR)
+                
+                # We specifically target files that likely have the footer/contact section
+                # But we scan all html just in case
+                if fix_file_structure(filepath):
+                    fixed_count += 1
+                    print(f"  Refactored: {rel_path}")
+    
+    print("\n" + "=" * 60)
+    print(f"Files Modified: {fixed_count}")
+    print("=" * 60)
+
+if __name__ == "__main__":
+    main()

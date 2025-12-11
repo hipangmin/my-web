@@ -1,0 +1,88 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Footer Redesign - Simplified Layout
+Left: Logo | Right: Contact Info with Icons
+"""
+
+import os
+import re
+
+TARGET_DIR = r"d:\ypm\my web\test\cmcsclass.com"
+
+# New simplified footer HTML
+NEW_FOOTER_CONTENT = '''<div class="elementor-element elementor-element-2dfd29ab e-con-full e-flex e-con e-parent" data-element_type="container" data-id="2dfd29ab" data-settings='{"background_background":"gradient"}'>
+<div class="elementor-element elementor-element-40a3479a e-con-full e-flex e-con e-child" data-element_type="container" data-id="40a3479a" style="flex: 1;">
+<div class="elementor-element elementor-element-573d1b21 elementor-position-top elementor-widget elementor-widget-image-box" data-element_type="widget" data-id="573d1b21" data-widget_type="image-box.default">
+<div class="elementor-image-box-wrapper"><figure class="elementor-image-box-img"><a href="index.html" tabindex="-1"><img alt="" class="attachment-full size-full wp-image-13260" height="240" src="wp-content/uploads/2025/07/FullColor_1280x1024_300dpi-1-300x240-removebg-preview.webp" width="300"/></a></figure></div> </div>
+</div>
+<div class="elementor-element elementor-element-footer-contact e-con-full e-flex e-con e-child" data-element_type="container" style="flex: 2; padding: 20px;">
+<div class="footer-contact-info" style="color: #0c4a6e; font-size: 15px; line-height: 1.8;">
+<p style="margin: 0 0 8px 0; display: flex; align-items: flex-start;">
+<span style="margin-right: 10px; font-size: 18px;">📞</span>
+<a href="tel:0085261717889" style="color: inherit; text-decoration: none;">00852-61717889</a>
+</p>
+<p style="margin: 0 0 8px 0; display: flex; align-items: flex-start;">
+<span style="margin-right: 10px; font-size: 18px;">📧</span>
+<span>
+<a href="mailto:technical@cmcsclass.org" style="color: inherit; text-decoration: none;">technical@cmcsclass.org</a><br>
+<a href="mailto:fleet@cmcsclass.org" style="color: inherit; text-decoration: none;">fleet@cmcsclass.org</a>
+</span>
+</p>
+<p style="margin: 0; display: flex; align-items: flex-start;">
+<span style="margin-right: 10px; font-size: 18px;">📍</span>
+<span>São Tomé and Príncipe</span>
+</p>
+</div>
+</div>
+</div>
+<div class="elementor-element elementor-element-3cc2c7f1 e-flex e-con-boxed e-con e-parent" data-element_type="container" data-id="3cc2c7f1" data-settings='{"background_background":"gradient"}'>
+<div class="e-con-inner">
+<div class="elementor-element elementor-element-70813cef elementor-widget elementor-widget-heading" data-element_type="widget" data-id="70813cef" data-widget_type="heading.default">
+<p class="elementor-heading-title elementor-size-default">© All rights reserved Center Marine Certificate Service​</p> </div>
+</div>
+</div>
+</footer>'''
+
+def fix_file(filepath):
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+    except:
+        return False
+    
+    original = content
+    
+    # Find and replace the footer content
+    # Match from the first container after <footer to </footer>
+    # Pattern: everything inside footer tag 
+    pattern = r'(<footer class="elementor elementor-11533 elementor-location-footer"[^>]*>)\s*<div class="elementor-element elementor-element-2dfd29ab.*?</footer>'
+    
+    replacement = r'\1\n' + NEW_FOOTER_CONTENT
+    
+    content = re.sub(pattern, replacement, content, flags=re.DOTALL)
+    
+    if content != original:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+        return True
+    return False
+
+def main():
+    print("=" * 60)
+    print("FOOTER REDESIGN - Simplified Layout")
+    print("=" * 60)
+    
+    fixed = 0
+    for root, dirs, files in os.walk(TARGET_DIR):
+        dirs[:] = [d for d in dirs if d not in ['.git', 'node_modules', 'wp-json']]
+        for file in files:
+            if file.endswith('.html'):
+                if fix_file(os.path.join(root, file)):
+                    fixed += 1
+                    print(f"  Fixed: {file}")
+    
+    print(f"\nUpdated {fixed} files")
+
+if __name__ == "__main__":
+    main()

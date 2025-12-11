@@ -1,0 +1,33 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Replace Image (Correct Target): 06b632d8-74d5-446d-914a-751b7cd06558.png
+Source: ship_registration_side_view_....png
+"""
+
+import os
+from PIL import Image
+
+# The generated side-view ship image
+NEW_IMAGE_SOURCE = r"C:/Users/Administrator/.gemini/antigravity/brain/aef38e19-3bda-43f5-bb5c-03fd03adb4dd/ship_registration_side_view_1765356419296.png"
+
+# The correct target file provided by user
+TARGET_IMAGE_PATH = r"d:\ypm\my web\test\cmcsclass.com\wp-content\uploads\2025\07\06b632d8-74d5-446d-914a-751b7cd06558.png"
+
+def replace_image():
+    if not os.path.exists(NEW_IMAGE_SOURCE):
+        print(f"Error: Source image not found at {NEW_IMAGE_SOURCE}")
+        return
+    
+    try:
+        with Image.open(NEW_IMAGE_SOURCE) as img:
+            # Target is PNG, no need to convert to RGB/JPEG unless we want to optimize size
+            # But let's keep it as PNG to match extension
+            img.save(TARGET_IMAGE_PATH, 'PNG')
+            
+        print(f"Successfully replaced: {TARGET_IMAGE_PATH}")
+    except Exception as e:
+        print(f"Failed to replace image: {e}")
+
+if __name__ == "__main__":
+    replace_image()

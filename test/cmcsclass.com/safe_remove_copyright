@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Remove Extra Copyright Text (Safe Mode)
+Target: "All rights reserved to Center Marine Certificate Service"
+Protected: "© All rights reserved Center Marine Certificate Service"
+"""
+
+import os
+import re
+
+TARGET_DIR = r"d:\ypm\my web\test\cmcsclass.com"
+
+# The specific OLD text to remove.
+# We include "to Center Marine" to distinguishing it from the correct footer.
+TARGET_PHRASE = "All rights reserved to Center Marine Certificate Service"
+
+def remove_extra_copyright(filepath):
+    try:
+        with open(filepath, 'r', encoding='utf-8', errors='ignore') as f:
+            content = f.read()
+    except:
+        return False
+    
+    original = content
+    
+    # Safety Check: We only remove the phrase if it matches exactly
+    if TARGET_PHRASE in content:
+        # Regex to remove it along with any surrounding tags if it's isolated
+        # Example: <p>All rights reserved to ...</p>
+        
+        # 1. Try to remove the phrase wrapped in simple tags first
+        # Pattern matches: <any_tag>  matches  </any_tag>
+        # We use strict matching around the target phrase
+        tag_pattern = r'<[a-zA-Z0-9]+[^>]*>\s*' + re.escape(TARGET_PHRASE) + r'\s*</[a-zA-Z0-9]+>'
+        
+        content_after_tag_removal = re.sub(tag_pattern, '', content, flags=re.IGNORECASE)
+        
+        # 2. If text still remains (maybe it wasn't in its own tag, or complex nesting), remove just the text string
+        if TARGET_PHRASE in content_after_tag_removal:
+            content = content_after_tag_removal.replace(TARGET_PHRASE, '')
+        else:
+            content = content_after_tag_removal
+            
+    if content != original:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+        return True
+    return False
+
+def main():
+    print("=" * 60)
+    print("SAFE CLEANUP: Removing old 'reserved to' text only")
+    print("=" * 60)
+    
+    fixed = 0
+    for root, dirs, files in os.walk(TARGET_DIR):
+        dirs[:] = [d for d in dirs if d not in ['.git', 'node_modules', 'wp-json']]
+        for file in files:
+            if file.endswith('.html'):
+                if remove_extra_copyright(os.path.join(root, file)):
+                    fixed += 1
+                    print(f"  Cleaned: {file}")
+    
+    print(f"\nUpdated {fixed} files")
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,131 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Footer Optimization V2
+1. Fix Logo path (use correct absolute URL or relative path)
+2. Increase font size (16px base, 18px headers)
+3. Use SVG icons instead of Emojis for professional look
+4. Tweak layout for better balance
+"""
+
+import os
+import re
+
+TARGET_DIR = r"d:\ypm\my web\test\cmcsclass.com"
+
+# SVG Icons (White/Dark Blue consistent style)
+ICON_PHONE = '''<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:12px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>'''
+
+ICON_EMAIL = '''<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:12px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>'''
+
+ICON_LOCATION = '''<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:12px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>'''
+
+# New Footer Content
+NEW_FOOTER_HTML = f'''<div class="elementor-element elementor-element-2dfd29ab e-con-full e-flex e-con e-parent" data-element_type="container" data-id="2dfd29ab" data-settings='{{"background_background":"gradient"}}' style="padding: 40px 20px;">
+    
+    <!-- Flex Container for Footer Content -->
+    <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; max-width: 1200px; margin: 0 auto; width: 100%;">
+        
+        <!-- Left: Logo & Company Name -->
+        <div style="flex: 1; min-width: 300px; margin-bottom: 20px;">
+            <div class="elementor-element elementor-widget elementor-widget-image-box">
+                <div class="elementor-image-box-wrapper">
+                    <figure class="elementor-image-box-img">
+                        <a href="index.html" tabindex="-1">
+                            <!-- Fixed Logo URL - using absolute path from root if needed, or ensuring relative path is correct -->
+                            <img alt="Center Marine Certificate Service" src="wp-content/uploads/2025/07/FullColor_1280x1024_300dpi-1-300x240-removebg-preview.webp" style="width: 200px; height: auto; display: block; margin-bottom: 10px;">
+                        </a>
+                    </figure>
+                    <div class="elementor-image-box-content">
+                        <h3 class="elementor-image-box-title" style="font-size: 20px; font-weight: 600; color: #0f172a; margin: 0;">Center Marine</h3>
+                        <p class="elementor-image-box-description" style="font-size: 18px; color: #334155; margin: 0;">Certificate Service</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Contact Info -->
+        <div style="flex: 1; min-width: 300px; display: flex; flex-direction: column; justify-content: center; color: #1e293b; font-size: 16px; font-weight: 500;">
+            
+            <div style="margin-bottom: 15px; display: flex; align-items: center;">
+                {ICON_PHONE}
+                <a href="tel:0085261717889" style="color: inherit; text-decoration: none;">00852-61717889</a>
+            </div>
+
+            <div style="margin-bottom: 15px; display: flex; align-items: flex-start;">
+                <span style="margin-top: 3px;">{ICON_EMAIL}</span>
+                <div style="display:flex; flex-direction:column;">
+                    <a href="mailto:technical@cmcsclass.org" style="color: inherit; text-decoration: none; margin-bottom: 4px;">technical@cmcsclass.org</a>
+                    <a href="mailto:fleet@cmcsclass.org" style="color: inherit; text-decoration: none;">fleet@cmcsclass.org</a>
+                </div>
+            </div>
+
+            <div style="display: flex; align-items: center;">
+                {ICON_LOCATION}
+                <span>São Tomé and Príncipe</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Copyright Section -->
+<div class="elementor-element elementor-element-3cc2c7f1 e-flex e-con-boxed e-con e-parent" data-element_type="container" data-id="3cc2c7f1" data-settings='{{"background_background":"gradient"}}' style="border-top: 1px solid rgba(0,0,0,0.05); margin-top: 0;">
+    <div class="e-con-inner">
+        <div class="elementor-element elementor-element-70813cef elementor-widget elementor-widget-heading" data-element_type="widget" data-id="70813cef" data-widget_type="heading.default">
+            <p class="elementor-heading-title elementor-size-default" style="font-size: 14px; opacity: 0.7; text-align: center; padding: 20px 0;">© All rights reserved Center Marine Certificate Service​</p>
+        </div>
+    </div>
+</div>
+'''
+
+def fix_footer(filepath):
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+    except:
+        return False
+    
+    original = content
+    
+    # Pattern to match the ENTIRE footer content inner HTML we replaced last time
+    # Or just replace the whole content from <div...2dfd29ab... to the copyright section
+    
+    # We look for the start of the footer main container
+    start_marker = r'<div class="elementor-element elementor-element-2dfd29ab'
+    end_marker = r'</footer>'
+    
+    # Construct regex to capture everything inside footer
+    pattern = f'({start_marker}.*?){end_marker}'
+    
+    replacement = NEW_FOOTER_HTML + '\n</footer>'
+    
+    # We use a broad match to replace the whole footer inner content
+    content = re.sub(pattern, replacement, content, flags=re.DOTALL)
+    
+    if content != original:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+        return True
+    return False
+
+def main():
+    print("=" * 60)
+    print("FOOTER OPTIMIZATION V2 - Fix Logo & Style")
+    print("=" * 60)
+    
+    fixed = 0
+    for root, dirs, files in os.walk(TARGET_DIR):
+        dirs[:] = [d for d in dirs if d not in ['.git', 'node_modules', 'wp-json']]
+        for file in files:
+            if file.endswith('.html'):
+                if fix_footer(os.path.join(root, file)):
+                    fixed += 1
+                    print(f"  Optimized: {file}")
+    
+    print(f"\nUpdated {fixed} files")
+
+if __name__ == "__main__":
+    main()

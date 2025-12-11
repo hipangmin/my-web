@@ -1,0 +1,104 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Fix Email Format - Plan C
+1. Remove the separate fleet@ email <li>
+2. Combine both emails into one <li> with line break
+3. Add CSS for consistent spacing
+"""
+
+import os
+import re
+
+TARGET_DIR = r"d:\ypm\my web\test\cmcsclass.com"
+
+# The old pattern - two separate email list items
+OLD_EMAIL_PATTERN = r'''<li class="elementor-icon-list-item">\s*<a[^>]*>\s*<span class="elementor-icon-list-text">Email: technical@cmcsclass\.org</span>\s*</a>\s*</li>\s*<li class="elementor-icon-list-item">\s*<a href="mailto:fleet@cmcsclass\.org">\s*<span class="elementor-icon-list-text">Email: fleet@cmcsclass\.org</span>\s*</a>\s*</li>'''
+
+# The new format - single <li> with both emails
+NEW_EMAIL_HTML = '''<li class="elementor-icon-list-item">
+<span class="elementor-icon-list-text">Email: <a href="mailto:technical@cmcsclass.org" style="color: inherit; text-decoration: none;">technical@cmcsclass.org</a><br>
+<span style="margin-left: 2.8em;"><a href="mailto:fleet@cmcsclass.org" style="color: inherit; text-decoration: none;">fleet@cmcsclass.org</a></span></span>
+</li>'''
+
+# CSS for consistent spacing
+SPACING_CSS = '''
+<style id="contact-us-spacing-fix">
+/* Contact Us List Spacing Fix */
+.elementor-widget-icon-list .elementor-icon-list-items li.elementor-icon-list-item {
+    margin-bottom: 10px !important;
+    padding-bottom: 0 !important;
+}
+.elementor-widget-icon-list .elementor-icon-list-items li.elementor-icon-list-item:last-child {
+    margin-bottom: 0 !important;
+}
+/* Location text spacing */
+.elementor-widget-text-editor .elementor-widget-container p {
+    margin-bottom: 10px !important;
+}
+</style>
+'''
+
+def fix_file(filepath):
+    """Fix a single HTML file."""
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+    except Exception as e:
+        print(f"  Error reading {filepath}: {e}")
+        return False
+    
+    original = content
+    modified = False
+    
+    # Step 1: Replace the two-email pattern with the combined format
+    new_content, count = re.subn(OLD_EMAIL_PATTERN, NEW_EMAIL_HTML, content, flags=re.DOTALL)
+    if count > 0:
+        content = new_content
+        modified = True
+        print(f"  Replaced {count} email pattern(s)")
+    
+    # Step 2: Add spacing CSS if not already present
+    if 'id="contact-us-spacing-fix"' not in content:
+        if '</head>' in content:
+            content = content.replace('</head>', SPACING_CSS + '\n</head>')
+            modified = True
+            print(f"  Added spacing CSS")
+    
+    if modified:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+        return True
+    
+    return False
+
+def main():
+    print("=" * 60)
+    print("EMAIL FORMAT FIX - PLAN C")
+    print("=" * 60)
+    
+    fixed_count = 0
+    processed_count = 0
+    
+    for root, dirs, files in os.walk(TARGET_DIR):
+        # Skip certain directories
+        skip_dirs = ['.git', 'node_modules', '__pycache__', 'wp-json']
+        dirs[:] = [d for d in dirs if d not in skip_dirs]
+        
+        for file in files:
+            if file.endswith('.html'):
+                filepath = os.path.join(root, file)
+                rel_path = os.path.relpath(filepath, TARGET_DIR)
+                processed_count += 1
+                
+                if fix_file(filepath):
+                    fixed_count += 1
+                    print(f"  Fixed: {rel_path}")
+    
+    print("\n" + "=" * 60)
+    print(f"Processed: {processed_count} files")
+    print(f"Fixed: {fixed_count} files")
+    print("=" * 60)
+
+if __name__ == "__main__":
+    main()

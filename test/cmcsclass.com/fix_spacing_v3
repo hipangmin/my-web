@@ -1,0 +1,98 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Fix Spacing V3
+Updates the CSS to be 'Ultratight' to fix visual gap issues.
+"""
+
+import os
+import re
+
+TARGET_DIR = r"d:\ypm\my web\test\cmcsclass.com"
+
+# New Ultratight CSS
+NEW_CSS = '''<style id="contact-us-spacing-fix">
+/* Contact Us List Spacing Fix v3 (Ultratight) */
+.elementor-widget-icon-list .elementor-icon-list-items li.elementor-icon-list-item {
+    margin-bottom: 6px !important; /* Reduced to 6px for tighter look */
+    padding-bottom: 0 !important;
+}
+.elementor-widget-icon-list .elementor-icon-list-items li.elementor-icon-list-item:last-child {
+    margin-bottom: 0 !important;
+}
+/* Tighter line height for the email block */
+.elementor-widget-icon-list .elementor-icon-list-text {
+    line-height: 1.4 !important; 
+    padding: 0 !important;
+}
+/* Ensure links don't add extra height */
+.elementor-widget-icon-list .elementor-icon-list-text a {
+    display: inline;
+    line-height: inherit;
+    text-decoration: none !important;
+}
+/* Fix Location Text Spacing */
+.elementor-widget-text-editor p {
+    margin-bottom: 6px !important;
+}
+/* Ensure the widget itself doesn't have huge gaps */
+.elementor-widget {
+    margin-bottom: 10px !important;
+}
+</style>'''
+
+def update_css(filepath):
+    """Update the CSS block in the file."""
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+    except Exception as e:
+        print(f"  Error reading {filepath}: {e}")
+        return False
+    
+    # Regex to find the existing style block (v1 or v2)
+    # It might span multiple lines, so use re.DOTALL
+    pattern = r'<style id="contact-us-spacing-fix">.*?</style>'
+    
+    if re.search(pattern, content, re.DOTALL):
+        new_content = re.sub(pattern, NEW_CSS, content, flags=re.DOTALL)
+        if new_content != content:
+            with open(filepath, 'w', encoding='utf-8') as f:
+                f.write(new_content)
+            return True
+    else:
+        # If not found (maybe missed in previous run?), append it before </head>
+        if '</head>' in content:
+            content = content.replace('</head>', NEW_CSS + '\n</head>')
+            with open(filepath, 'w', encoding='utf-8') as f:
+                f.write(content)
+            return True
+            
+    return False
+
+def main():
+    print("=" * 60)
+    print("SPACING FIX V3 - ULTRATIGHT")
+    print("=" * 60)
+    
+    fixed_count = 0
+    
+    for root, dirs, files in os.walk(TARGET_DIR):
+        skip_dirs = ['.git', 'node_modules', '__pycache__', 'wp-json']
+        dirs[:] = [d for d in dirs if d not in skip_dirs]
+        
+        for file in files:
+            if file.endswith('.html'):
+                filepath = os.path.join(root, file)
+                rel_path = os.path.relpath(filepath, TARGET_DIR)
+                
+                if update_css(filepath):
+                    fixed_count += 1
+                    print(f"  Updated: {rel_path}")
+    
+    print("\n" + "=" * 60)
+    print(f"Updated CSS in: {fixed_count} files")
+    print("=" * 60)
+
+if __name__ == "__main__":
+    main()

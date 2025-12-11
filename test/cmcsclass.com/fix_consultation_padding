@@ -1,0 +1,78 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Fix Consultation Section V2 - More Padding
+1. Increases the top padding of the "REQUEST A FREE CONSULTATION" heading to 10vh.
+2. Ensures the text block sits significantly lower, aligning better with the form's visual center.
+"""
+
+import os
+import re
+
+TARGET_DIR = r"d:\ypm\my web\test\cmcsclass.com"
+
+def fix_consultation_padding(filepath):
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+    except:
+        return False
+    
+    original = content
+    
+    # We look for the h2 tag we modified previously (or the original if not modified yet)
+    # Previous modification used: style="padding-top: 4vh;"
+    
+    # We want to change 4vh (or original 0) to 10vh for a significant drop.
+    
+    # Pattern to find the heading tag with ANY inline style or without it
+    # <h2 class="elementor-heading-title elementor-size-default" ... >REQUEST A FREE CONSULTATION</h2>
+    
+    pattern = r'(<h[1-6] class="elementor-heading-title elementor-size-default"[^>]*>)\s*REQUEST A FREE CONSULTATION'
+    
+    # We need to replace the opening tag to include our new style
+    # If style exists, we update it. If not, we add it.
+    
+    def replacer(match):
+        tag_start = match.group(1)
+        # Check if style attribute exists
+        if 'style="' in tag_start:
+            # Replace existing padding-top or add it
+            if 'padding-top' in tag_start:
+                # Update existing padding-top
+                new_tag = re.sub(r'padding-top:\s*[^;"]+;?', 'padding-top: 10vh;', tag_start)
+            else:
+                # Append padding-top
+                new_tag = tag_start.replace('style="', 'style="padding-top: 10vh; ')
+        else:
+            # Add style attribute
+            new_tag = tag_start.replace('class="', 'style="padding-top: 10vh;" class="')
+            
+        return new_tag + 'REQUEST A FREE CONSULTATION'
+
+    content = re.sub(pattern, replacer, content)
+
+    if content != original:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+        return True
+    return False
+
+def main():
+    print("=" * 60)
+    print("FIX CONSULTATION SECTION V2 - Increase Alignment Padding")
+    print("=" * 60)
+    
+    fixed = 0
+    for root, dirs, files in os.walk(TARGET_DIR):
+        dirs[:] = [d for d in dirs if d not in ['.git', 'node_modules', 'wp-json']]
+        for file in files:
+            if file.endswith('.html'):
+                if fix_consultation_padding(os.path.join(root, file)):
+                    fixed += 1
+                    print(f"  Fixed: {file}")
+    
+    print(f"\nUpdated {fixed} files")
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Replace Image 4 with User Uploaded Image
+Target: shutterstock_2312730785.webp
+Source: uploaded_image_1765356150280.jpg
+"""
+
+import os
+from PIL import Image
+
+# User uploaded image path
+NEW_IMAGE_SOURCE = r"C:/Users/Administrator/.gemini/antigravity/brain/aef38e19-3bda-43f5-bb5c-03fd03adb4dd/uploaded_image_1765356150280.jpg"
+
+# Target path on the website
+TARGET_IMAGE_PATH = r"d:\ypm\my web\test\cmcsclass.com\wp-content\uploads\2025\07\shutterstock_2312730785.webp"
+
+def replace_image():
+    if not os.path.exists(NEW_IMAGE_SOURCE):
+        print(f"Error: Source image not found at {NEW_IMAGE_SOURCE}")
+        return
+    
+    try:
+        with Image.open(NEW_IMAGE_SOURCE) as img:
+            rgb_img = img.convert('RGB')
+            # Save as WEBP, quality 90 to look great
+            rgb_img.save(TARGET_IMAGE_PATH, 'WEBP', quality=95)
+            
+        print(f"Successfully converted and replaced: {TARGET_IMAGE_PATH}")
+    except Exception as e:
+        print(f"Failed to replace image: {e}")
+
+if __name__ == "__main__":
+    replace_image()

@@ -1,0 +1,184 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Fix Email Format and Update Flag Carousel
+"""
+
+import os
+import re
+
+TARGET_DIR = r"d:\ypm\my web\test\cmcsclass.com"
+
+# ============================================
+# PART 1: Fix Email Format (two lines)
+# ============================================
+
+def fix_emails():
+    """Replace info@cmcsclass.org with two-line email format."""
+    print("=" * 60)
+    print("FIXING EMAIL FORMAT")
+    print("=" * 60)
+    
+    count = 0
+    for root, dirs, files in os.walk(TARGET_DIR):
+        skip_dirs = ['.git', 'node_modules', '__pycache__', 'wp-json']
+        dirs[:] = [d for d in dirs if d not in skip_dirs]
+        
+        for file in files:
+            if file.endswith('.html'):
+                filepath = os.path.join(root, file)
+                try:
+                    with open(filepath, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                except:
+                    continue
+                
+                # Pattern to find email list item with info@cmcsclass.org
+                pattern = r'(<li class="elementor-icon-list-item">\s*<a[^>]*>\s*<span class="elementor-icon-list-text">)Email: info@cmcsclass\.org(</span>\s*</a>\s*</li>)'
+                
+                replacement = r'''\1Email: technical@cmcsclass.org\2
+<li class="elementor-icon-list-item">
+<a href="mailto:fleet@cmcsclass.org">
+<span class="elementor-icon-list-text">Email: fleet@cmcsclass.org</span>
+</a>
+</li>'''
+                
+                new_content, n = re.subn(pattern, replacement, content, flags=re.DOTALL)
+                
+                if n > 0:
+                    with open(filepath, 'w', encoding='utf-8') as f:
+                        f.write(new_content)
+                    count += n
+                    rel_path = os.path.relpath(filepath, TARGET_DIR)
+                    print(f"  Fixed: {rel_path}")
+    
+    print(f"\nFixed {count} email entries.\n")
+
+# ============================================
+# PART 2: Update Flag Carousel
+# ============================================
+
+def update_carousel():
+    """Update the flag carousel in ships-registration/index.html"""
+    print("=" * 60)
+    print("UPDATING FLAG CAROUSEL")
+    print("=" * 60)
+    
+    filepath = os.path.join(TARGET_DIR, "services", "ships-registration", "index.html")
+    
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+    except Exception as e:
+        print(f"Error reading file: {e}")
+        return
+    
+    # New carousel HTML with only 5 flags: Comoros, Tanzania, Cameroon, São Tomé and Príncipe, Togo
+    # First, let's find the carousel wrapper and replace its contents
+    
+    new_slides = '''<div aria-live="off" class="swiper-wrapper">
+<div aria-label="1 of 5" aria-roledescription="slide" class="swiper-slide" data-slide="1" role="group">
+<div class="elementor-element elementor-element-1b01a8c e-flex e-con-boxed e-con e-child" data-element_type="container" data-id="1b01a8c">
+<div class="e-con-inner">
+<div class="elementor-element elementor-element-dc270af elementor-widget elementor-widget-image" data-element_type="widget" data-id="dc270af" data-widget_type="image.default">
+<figure class="wp-caption">
+<img alt="" class="attachment-large size-large wp-image-12981" decoding="async" height="480" loading="lazy" src="../../wp-content/uploads/2025/07/Flag_of_the_Comoros.svg_-1024x614.png" width="800"/> <figcaption class="widget-image-caption wp-caption-text">Comoros</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div aria-label="2 of 5" aria-roledescription="slide" class="swiper-slide" data-slide="2" role="group">
+<div class="elementor-element elementor-element-6b84b96 e-flex e-con-boxed e-con e-child" data-element_type="container" data-id="6b84b96">
+<div class="e-con-inner">
+<div class="elementor-element elementor-element-20907b1 elementor-widget elementor-widget-image" data-element_type="widget" data-id="20907b1" data-widget_type="image.default">
+<figure class="wp-caption">
+<img alt="" class="attachment-large size-large wp-image-12971" decoding="async" height="534" loading="lazy" src="../../wp-content/uploads/2025/07/Flag_of_Tanzania.svg_-1024x683.png" width="800"/> <figcaption class="widget-image-caption wp-caption-text">Tanzania</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div aria-label="3 of 5" aria-roledescription="slide" class="swiper-slide" data-slide="3" role="group">
+<div class="elementor-element elementor-element-cam001 e-flex e-con-boxed e-con e-child" data-element_type="container" data-id="cam001">
+<div class="e-con-inner">
+<div class="elementor-element elementor-element-cam002 elementor-widget elementor-widget-image" data-element_type="widget" data-id="cam002" data-widget_type="image.default">
+<figure class="wp-caption">
+<img alt="" class="attachment-large size-large" decoding="async" height="534" loading="lazy" src="../../wp-content/uploads/2025/07/Cameroon.jpg" width="800"/> <figcaption class="widget-image-caption wp-caption-text">Cameroon</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div aria-label="4 of 5" aria-roledescription="slide" class="swiper-slide" data-slide="4" role="group">
+<div class="elementor-element elementor-element-stp001 e-flex e-con-boxed e-con e-child" data-element_type="container" data-id="stp001">
+<div class="e-con-inner">
+<div class="elementor-element elementor-element-stp002 elementor-widget elementor-widget-image" data-element_type="widget" data-id="stp002" data-widget_type="image.default">
+<figure class="wp-caption">
+<img alt="" class="attachment-large size-large" decoding="async" height="534" loading="lazy" src="../../wp-content/uploads/2025/07/São Tomé and Príncipe.svg.png" width="800"/> <figcaption class="widget-image-caption wp-caption-text">São Tomé and Príncipe</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div aria-label="5 of 5" aria-roledescription="slide" class="swiper-slide" data-slide="5" role="group">
+<div class="elementor-element elementor-element-616fda2 e-flex e-con-boxed e-con e-child" data-element_type="container" data-id="616fda2">
+<div class="e-con-inner">
+<div class="elementor-element elementor-element-38fcc11 elementor-widget elementor-widget-image" data-element_type="widget" data-id="38fcc11" data-widget_type="image.default">
+<figure class="wp-caption">
+<img alt="" class="attachment-large size-large wp-image-12969" decoding="async" height="495" loading="lazy" src="../../wp-content/uploads/2025/07/Flag_of_Togo.svg_-1024x633.png" width="800"/> <figcaption class="widget-image-caption wp-caption-text">Togo</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>'''
+    
+    # Find and replace the swiper-wrapper div
+    pattern = r'<div aria-live="off" class="swiper-wrapper">.*?</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>\s*</div>'
+    
+    # Alternative: Find by carousel_items configuration
+    # Update the data-settings to show 5 items instead of 11
+    old_config = '"carousel_items":[{"slide_title":"Slide #1","_id":"588185c"},{"slide_title":"Slide #2","_id":"7c23f87"},{"slide_title":"Slide #3","_id":"293c881"},{"_id":"3044e0c","slide_title":"Slide #4"},{"_id":"cd950a1","slide_title":"Slide #5"},{"_id":"7a72c77","slide_title":"Slide #6"},{"_id":"ccc3d6b","slide_title":"Slide #7"},{"_id":"a31ab87","slide_title":"Slide #8"},{"_id":"6745afc","slide_title":"Slide #9"},{"_id":"fd543b7","slide_title":"Slide #10"},{"_id":"1b8b1f1","slide_title":"Slide #11"}]'
+    new_config = '"carousel_items":[{"slide_title":"Comoros","_id":"com001"},{"slide_title":"Tanzania","_id":"tan001"},{"slide_title":"Cameroon","_id":"cam001"},{"slide_title":"São Tomé and Príncipe","_id":"stp001"},{"slide_title":"Togo","_id":"tog001"}]'
+    
+    if old_config in content:
+        content = content.replace(old_config, new_config)
+        print("  Updated carousel configuration")
+    
+    # Now replace the actual slides - find the swiper-wrapper and its contents
+    # This is complex due to nested divs, so let's use a different approach
+    # Find the start and end markers
+    
+    start_marker = '<div aria-live="off" class="swiper-wrapper">'
+    # Find from start_marker to the navigation buttons
+    end_marker = '<div aria-label="Previous" class="elementor-swiper-button'
+    
+    if start_marker in content and end_marker in content:
+        start_idx = content.find(start_marker)
+        end_idx = content.find(end_marker)
+        
+        if start_idx < end_idx:
+            new_content = content[:start_idx] + new_slides + '\n' + content[end_idx:]
+            
+            with open(filepath, 'w', encoding='utf-8') as f:
+                f.write(new_content)
+            
+            print("  Updated carousel slides successfully!")
+            print("  New flags: Comoros, Tanzania, Cameroon, São Tomé and Príncipe, Togo")
+        else:
+            print("  Error: Markers found but in wrong order")
+    else:
+        print(f"  Could not find carousel markers")
+        print(f"    start_marker found: {start_marker in content}")
+        print(f"    end_marker found: {end_marker in content}")
+
+def main():
+    fix_emails()
+    update_carousel()
+    print("\n" + "=" * 60)
+    print("DONE!")
+    print("=" * 60)
+
+if __name__ == "__main__":
+    main()
